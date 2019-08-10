@@ -2,15 +2,17 @@
     "EC1": {
         "checkbox": true,
         "model": "EC1",
-        "pic_right": "ec1-b-right-photo.png",
-        "pic_top": "ec1-b-top-photo.png",
+        "pic_right": "ec1-b-dv-blue-right-photo.png",
+        "pic_top": "ec1-b-dv-blue-top-photo.png",
         "pic_red_right": "ec1-b-right.png",
         "pic_red_top": "ec1-b-top.png",
         "description": "80% of CS:GO professional players using EC1 are palm grip. 20% of players are claw grip.",
         "length": "128",
         "height": "43",
         "width": "64",
-        "link": "https://zowie.benq.com/en-us/product/mouse/ec/ec1-b.html"
+        "link": "https://zowie.benq.com/en-us/product/mouse/ec/ec1-b.html",
+        "link2": "https://zowie.benq.com/en-us/product/mouse/divina/ec1-b-pink.html",
+        "link3": "https://zowie.benq.com/en-us/product/mouse/ec/ec1-a-white.html"
     },
     "EC2": {
         "checkbox": true,
@@ -23,7 +25,9 @@
         "length": "128",
         "height": "40",
         "width": "61",
-        "link": "https://zowie.benq.com/en-us/product/mouse/ec/ec2-b.html"
+        "link": "https://zowie.benq.com/en-us/product/mouse/ec/ec2-b.html",
+        "link2": "https://zowie.benq.com/en-us/product/mouse/divina/ec2-b-pink.html"
+
     },
     "FK1_PLUS": {
         "checkbox": false,
