@@ -86,8 +86,8 @@
         </a>
       </div>
     </div>
-    <section></section>
-    <div class="content2" style="background:#000;padding:50px 30px;margin-top:100px">
+    <section>
+    <div class="content2" style="background:#000;padding:50px 30px;margin-top:100px;margin-bottom:60px">
       <h1 style="color:#B12741;font-size: 30px;line-height: 37px;padding:30px 0;">Select 2 models to compare.</h1>
       <p style="color:#fff;font-size: 18px;line-height: 22px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, iure.</p>
       <p style="color:#fff;font-size: 18px;line-height: 22px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, iure.</p>
@@ -97,8 +97,15 @@
       <p style="color:#fff;font-size: 18px;line-height: 22px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, iure.</p>
       <p style="color:#fff;font-size: 18px;line-height: 22px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, iure.</p>
     </div>
+    </section>
 
+    <section style="padding-top:60px; background:#fff">
+    <div class="content">
 
+      //Fred 請幫我塞這邊
+
+    </div>
+    </section>
 
   </div>
 </template>
@@ -173,7 +180,7 @@ export default {
   font-size: 19px;
 }
 .radio-beauty-container .radio-beauty:hover, .radio-beauty-container input[type="radio"]:checked + .radio-beauty {
-  background-color: #CCc ;
+  background-color: #fff;
   border: #CC0040 5px solid;
   background-clip: content-box;
 }
