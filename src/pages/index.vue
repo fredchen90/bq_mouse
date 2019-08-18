@@ -118,7 +118,18 @@
     <div class="content">
 
       //Fred 請幫我塞這邊
-      {{ config_file }}
+      <div>{{ config_file }}</div>
+      </br>
+      </br>
+      <div v-if="config_file !== null">
+        <p>About FK1: {{ config_file["EC1"].description }} </p>
+        <p>About Fk2: {{ config_file["EC2"].description }} </p>
+
+        <p>Length: {{ config_file["EC1"].length }} </p>
+        <p>Height: {{ config_file["EC1"].height }} </p>
+        <p>Width: {{ config_file["EC1"].width }} </p>
+      </div>
+
 
     </div>
     </section>
