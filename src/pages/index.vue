@@ -32,39 +32,40 @@
       <p style="color:#fff;font-size: 18px;line-height: 22px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, iure.</p>
     </div>
 
+    <!-- Radio button -->
     <div class="content">
       <ul class="ul-c" style="padding-top: 36px">
         <li style="font-size:16px;line-height:19px;margin:22px 0;">
-                <div class="radio-beauty-container">
-                 <p style="color:#fff;"><b style="font-weight: bold; font-size: 18px;line-height: 22px;"> Shape：</b>
-                <label style="margin: 0 40px">
-                    <input type="radio" name="shape" id="radioName1" hidden/>
-                    <label for="radioName1" class="radio-beauty"></label>
-                    <span class="radio-name">Ergonomic</span>
-                </label>
-                <label>
-                    <input type="radio" name="shape" id="radioName2" hidden/>
-                    <label for="radioName2" class="radio-beauty"></label>
-                    <span class="radio-name">Ambidextrous</span>
-                </label>
-                </p>
-                </div>
+          <div class="radio-beauty-container">
+            <p style="color:#fff;"><b style="font-weight: bold; font-size: 18px;line-height: 22px;"> Shape：</b>
+          <label style="margin: 0 40px">
+              <input type="radio" name="shape" id="radioName1" hidden value="a" v-model="radio.shape"/>
+              <label for="radioName1" class="radio-beauty"></label>
+              <span class="radio-name">Ergonomic</span>
+          </label>
+          <label>
+              <input type="radio" name="shape" id="radioName2" hidden value="b" v-model="radio.shape"/>
+              <label for="radioName2" class="radio-beauty"></label>
+              <span class="radio-name">Ambidextrous</span>
+          </label>
+          </p>
+          </div>
         </li>
         <li >
-                <div class="radio-beauty-container">
-                 <p style="color:#fff;"><b style="font-weight: bold; font-size: 18px;line-height: 22px;"> Coating：</b>
-                <label style="margin: 0 40px">
-                    <input type="radio" name="coating" id="radioName3" hidden/>
-                    <label for="radioName3" class="radio-beauty"></label>
-                    <span class="radio-name">Standard</span>
-                </label>
-                <label>
-                    <input type="radio" name="coating" id="radioName4" hidden/>
-                    <label for="radioName4" class="radio-beauty"></label>
-                    <span class="radio-name">Glossy</span>
-                </label>
-                </p>
-                </div>
+          <div class="radio-beauty-container">
+            <p style="color:#fff;"><b style="font-weight: bold; font-size: 18px;line-height: 22px;"> Coating：</b>
+          <label style="margin: 0 40px">
+              <input type="radio" name="coating" id="radioName3" hidden value="c" v-model="radio.coating"/>
+              <label for="radioName3" class="radio-beauty"></label>
+              <span class="radio-name">Standard</span>
+          </label>
+          <label>
+              <input type="radio" name="coating" id="radioName4" hidden value="d" v-model="radio.coating"/>
+              <label for="radioName4" class="radio-beauty"></label>
+              <span class="radio-name">Glossy</span>
+          </label>
+          </p>
+          </div>
         </li>
       </ul>
       <br>
@@ -73,6 +74,7 @@
           href=""
           target="_blank"
           class="button--mouse"
+          @click.prevent="handleSearch"
         >
           Search
         </a>
@@ -80,43 +82,43 @@
           href=""
           target="_blank"
           class="button--mouse"
+          @click.prevent="handleClear"
         >
           Clear
         </a>
       </div>
     </div>
+
+    <!-- Mouse Table -->
     <section>
-    <div class="content2" style="background:#000;padding:50px 30px;margin-top:100px;margin-bottom:60px">
-      <h1 style="color:#B12741;font-size: 30px;line-height: 37px;padding:30px 0;">Select 2 models to compare.</h1>
-      <!-- <p style="color:#fff;font-size: 18px;line-height: 22px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, iure.</p> -->
-      
-      <div style="line-height:80px;color:#fff;font-size: 30px;padding:325 0;text-align: center;height:80px;width:20%;background:#444;float:left;border:#000 1px solid;"> </div>
-      <div style="line-height:80px;color:#fff;font-size: 30px;padding:325 0;text-align: center;height:80px;width:20%;background:#444;float:left;border:#000 1px solid;"> EC Series</div>
-      <div style="line-height:80px;color:#fff;font-size: 30px;padding:325 0;text-align: center;height:80px;width:20%;background:#444;float:left;border:#000 1px solid;"> FK Series</div>
-      <div style="line-height:80px;color:#fff;font-size: 30px;padding:325 0;text-align: center;height:80px;width:20%;background:#444;float:left;border:#000 1px solid;"> ZA Series</div>
-      <div style="line-height:80px;color:#fff;font-size: 30px;padding:325 0;text-align: center;height:80px;width:20%;background:#444;float:left;border:#000 1px solid;"> S Series</div>
-      <ul style="padding:0px">
-        <li v-for="(item,index) in itemlist" :key="index" style="position: relative;min-height:180px;background: #FFFFFF;border: 1px solid #000000;width:20%;float:left;text-align:center;padding:26px 17px">
-          <div class="divMask" style="overflow: hidden;" v-show="item.showtime"></div>
-          <div @click="select(item,$event)">
-            <span style="font-size: 26px;line-height: 30px;text-align: center;">{{item.name}}</span>
-            <span style="font-size: 36px;line-height:"><br>{{item.title}}</span>
-            <p style="text-align:left;font-size: 14px;line-height: 16px;">{{item.content}}</p>
-          </div>
-        </li>
-      </ul>
-      
-      
-      
-      
-      <div style="clear:both;"></div>
-    </div>
+      <div class="content2" style="background:#000;padding:50px 30px;margin-top:100px;margin-bottom:60px">
+        <h1 style="color:#B12741;font-size: 30px;line-height: 37px;padding:30px 0;">Select 2 models to compare.</h1>
+        <!-- <p style="color:#fff;font-size: 18px;line-height: 22px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, iure.</p> -->
+        
+        <div style="line-height:80px;color:#fff;font-size: 30px;padding:325 0;text-align: center;height:80px;width:20%;background:#444;float:left;border:#000 1px solid;"> </div>
+        <div style="line-height:80px;color:#fff;font-size: 30px;padding:325 0;text-align: center;height:80px;width:20%;background:#444;float:left;border:#000 1px solid;"> EC Series</div>
+        <div style="line-height:80px;color:#fff;font-size: 30px;padding:325 0;text-align: center;height:80px;width:20%;background:#444;float:left;border:#000 1px solid;"> FK Series</div>
+        <div style="line-height:80px;color:#fff;font-size: 30px;padding:325 0;text-align: center;height:80px;width:20%;background:#444;float:left;border:#000 1px solid;"> ZA Series</div>
+        <div style="line-height:80px;color:#fff;font-size: 30px;padding:325 0;text-align: center;height:80px;width:20%;background:#444;float:left;border:#000 1px solid;"> S Series</div>
+        <ul style="padding:0px">
+          <li v-for="(item,index) in itemlist" :key="index" style="position: relative;min-height:180px;background: #FFFFFF;border: 1px solid #000000;width:20%;float:left;text-align:center;padding:26px 17px">
+            <div class="divMask" style="overflow: hidden;" v-show="item.showtime"></div>
+            <div @click="select(item,$event)">
+              <span style="font-size: 26px;line-height: 30px;text-align: center;">{{item.name}}</span>
+              <span style="font-size: 36px;line-height:"><br>{{item.title}}</span>
+              <p style="text-align:left;font-size: 14px;line-height: 16px;">{{item.content}}</p>
+            </div>
+          </li>
+        </ul>
+        <div style="clear:both;"></div>
+      </div>
     </section>
 
     <section style="padding-top:60px; background:#fff">
     <div class="content">
 
       //Fred 請幫我塞這邊
+      {{ config_file }}
 
     </div>
     </section>
@@ -135,159 +137,193 @@ export default {
   components: {
   },
   data() {
-  return {
-    itemlist:[
-        {
-          name: "",
-          title:"XL",
-          Type: "",
-          content: "",
-          showtime: true,
-          // callback: this.print
-        },
-        {
-          name: "",
-          title:"",
-          Type: "",
-          content: "",
-          showtime: true,
-          // callback: this.print
-        },
-        {
-          name: "FK1+",
-          Type: 2,
-          content: "90% of CS:GO professional players using FK1+ are claw grip.",
-          callback: this.print
-        },
-        {
-          name: "",
-          title:"",
-          Type: "",
-          content: "",
-          showtime: true,
-          // callback: this.print
-        },
-        {
-          name: "",
-          title:"",
-          Type: "",
-          content: "",
-          showtime: true,
-          // callback: this.print
-        },
-        {
-          name: "",
-          title:"L",
-          Type: "",
-          content: "",
-          showtime: true,
-          // callback: this.print
-        },
-        {
-          name: "EC1",
-          Type: 0,
-          content: "80% of CS:GO professional players using EC1 are palm grip. 20% of players are claw grip.",
-          callback: this.print
-        },
-        {
-          name: "FK1",
-          Type: 3,
-          content: "80% of CS:GO professional players using FK1 are claw grip. 20% of players are palm grip.",
-          callback: this.print
-        },
-        {
-          name: "ZA11",
-          Type: 5,
-          content: "90% of CS:GO professional players using ZA11 are palm grip.",
-          callback: this.print
-        },
-        {
-          name: "",
-          title:"",
-          Type: "",
-          content: "",
-          showtime: true,
-          // callback: this.print
-        },
-        {
-          name: "",
-          title:"M",
-          Type: "",
-          content: "",
-          showtime: true,
-          // callback: this.print
-        },
-        {
-          name: "EC2",
-          Type: 1,
-          content: "50% of CS:GO professional players using EC2 are claw grip. 50% of players are palm grip.",
-          callback: this.print
-        },
+    return {
+      radio: {
+        shape: null,
+        coating: null
+      },
+      config_file: null,
+      itemlist:[
+          {
+            name: "",
+            title:"XL",
+            Type: "",
+            content: "",
+            showtime: true,
+            // callback: this.print
+          },
+          {
+            name: "",
+            title:"",
+            Type: "",
+            content: "",
+            showtime: true,
+            // callback: this.print
+          },
+          {
+            name: "FK1+",
+            Type: 2,
+            content: "90% of CS:GO professional players using FK1+ are claw grip.",
+            callback: this.print
+          },
+          {
+            name: "",
+            title:"",
+            Type: "",
+            content: "",
+            showtime: true,
+            // callback: this.print
+          },
+          {
+            name: "",
+            title:"",
+            Type: "",
+            content: "",
+            showtime: true,
+            // callback: this.print
+          },
+          {
+            name: "",
+            title:"L",
+            Type: "",
+            content: "",
+            showtime: true,
+            // callback: this.print
+          },
+          {
+            name: "EC1",
+            Type: 0,
+            content: "80% of CS:GO professional players using EC1 are palm grip. 20% of players are claw grip.",
+            callback: this.print
+          },
+          {
+            name: "FK1",
+            Type: 3,
+            content: "80% of CS:GO professional players using FK1 are claw grip. 20% of players are palm grip.",
+            callback: this.print
+          },
+          {
+            name: "ZA11",
+            Type: 5,
+            content: "90% of CS:GO professional players using ZA11 are palm grip.",
+            callback: this.print
+          },
+          {
+            name: "",
+            title:"",
+            Type: "",
+            content: "",
+            showtime: true,
+            // callback: this.print
+          },
+          {
+            name: "",
+            title:"M",
+            Type: "",
+            content: "",
+            showtime: true,
+            // callback: this.print
+          },
+          {
+            name: "EC2",
+            Type: 1,
+            content: "50% of CS:GO professional players using EC2 are claw grip. 50% of players are palm grip.",
+            callback: this.print
+          },
 
-        {
-          name: "FK2",
-          Type: 4,
-          content: "50% of CS:GO professional players using FK2 are claw grip, 50% of players are palm grip.",
-          callback: this.print
-        },
+          {
+            name: "FK2",
+            Type: 4,
+            content: "50% of CS:GO professional players using FK2 are claw grip, 50% of players are palm grip.",
+            callback: this.print
+          },
 
-        {
-          name: "ZA12",
-          Type: 6,
-          content:"65% of CS:GO professional players using ZA12 are claw grip. 35% of players are palm grip.",
-          callback: this.print
-        },
-        {
-          name: "S1",
-          Type: 8,
-          content:"65% of CS:GO professional players using S2 are claw grip. 35% of players are palm grip.",
-          callback: this.print
-        },
-        {
-          name: "",
-          title:"S",
-          Type: "",
-          content: "",
-          showtime: true,
-          // callback: this.print
-        },
-        {
-          name: "",
-          title:"",
-          Type: "",
-          content: "",
-          showtime: true,
-          // callback: this.print
-        },
-        {
-          name: "",
-          title:"",
-          Type: "",
-          content: "",
-          showtime: true,
-          // callback: this.print
-        },
-        {
-          name: "ZA13",
-          Type: 7,
-          content:"50% of CS:GO professional players using ZA13 are claw grip, 50% of players are palm grip.",
-          callback: this.print
-        },
-        {
-          name: "S2",
-          Type: 9,
-          content:"60% of CS:GO professional players using S2 are claw grip. 40% of players are palm grip.",
-          callback: this.print
-        }
-    ],
+          {
+            name: "ZA12",
+            Type: 6,
+            content:"65% of CS:GO professional players using ZA12 are claw grip. 35% of players are palm grip.",
+            callback: this.print
+          },
+          {
+            name: "S1",
+            Type: 8,
+            content:"65% of CS:GO professional players using S2 are claw grip. 35% of players are palm grip.",
+            callback: this.print
+          },
+          {
+            name: "",
+            title:"S",
+            Type: "",
+            content: "",
+            showtime: true,
+            // callback: this.print
+          },
+          {
+            name: "",
+            title:"",
+            Type: "",
+            content: "",
+            showtime: true,
+            // callback: this.print
+          },
+          {
+            name: "",
+            title:"",
+            Type: "",
+            content: "",
+            showtime: true,
+            // callback: this.print
+          },
+          {
+            name: "ZA13",
+            Type: 7,
+            content:"50% of CS:GO professional players using ZA13 are claw grip, 50% of players are palm grip.",
+            callback: this.print
+          },
+          {
+            name: "S2",
+            Type: 9,
+            content:"60% of CS:GO professional players using S2 are claw grip. 40% of players are palm grip.",
+            callback: this.print
+          }
+      ],
+    }
+  },
   mounted() {
     console.log("Es,Eg,As,Ag: ", Es,Eg,As,Ag);
-    this.getTradeList();
+  },
+  computed: {
+
   },
   methods: {
-  
-  }
-  }
+    handleSearch() {
+      const file = this.radio.shape + this.radio.coating;
+      switch(file) {
+        case "ac":
+          console.log("use es file");
+          this.config_file = Es;
+          break;
+        case "ad":
+          console.log("use eg file");
+          this.config_file = Eg;
+          break;
+        case "bc":
+          console.log("use as file");
+          this.config_file = As;
+          break;
+        case "bd":
+          console.log("use ag file");
+          this.config_file = Ag;
+          break;
+        default:
+          console.log("no config");
+          break;
+      }
+    },
+    handleClear() {
+      this.radio.shape = null;
+      this.radio.coating = null;
+    }
   }
 }
 </script>
