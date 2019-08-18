@@ -102,8 +102,8 @@
         <div style="line-height:80px;color:#fff;font-size: 30px;padding:325 0;text-align: center;height:80px;width:20%;background:#444;float:left;border:#000 1px solid;"> S Series</div>
         <ul style="padding:0px">
           <li v-for="(item,index) in itemlist" :key="index" style="position: relative;min-height:180px;background: #FFFFFF;border: 1px solid #000000;width:20%;float:left;text-align:center;padding:26px 17px">
-            <div class="divMask" style="overflow: hidden;" v-show="item.showtime"></div>
-            <div @click="select(item,$event)">
+            <div class="divMask" style="overflow: hidden;" v-if="item.showtime"></div>
+            <div @click="select(item,index)">
               <span style="font-size: 26px;line-height: 30px;text-align: center;">{{item.name}}</span>
               <span style="font-size: 36px;line-height:"><br>{{item.title}}</span>
               <p style="text-align:left;font-size: 14px;line-height: 16px;">{{item.content}}</p>
@@ -142,6 +142,8 @@ export default {
         shape: null,
         coating: null
       },
+      modelOne:"",
+      modelTwo:"",
       config_file: null,
       itemlist:[
           {
@@ -164,6 +166,7 @@ export default {
             name: "FK1+",
             Type: 2,
             content: "90% of CS:GO professional players using FK1+ are claw grip.",
+            showtime: false,
             callback: this.print
           },
           {
@@ -193,18 +196,21 @@ export default {
           {
             name: "EC1",
             Type: 0,
+            showtime: false,
             content: "80% of CS:GO professional players using EC1 are palm grip. 20% of players are claw grip.",
             callback: this.print
           },
           {
             name: "FK1",
             Type: 3,
+            showtime: false,
             content: "80% of CS:GO professional players using FK1 are claw grip. 20% of players are palm grip.",
             callback: this.print
           },
           {
             name: "ZA11",
             Type: 5,
+            showtime: false,
             content: "90% of CS:GO professional players using ZA11 are palm grip.",
             callback: this.print
           },
@@ -227,6 +233,7 @@ export default {
           {
             name: "EC2",
             Type: 1,
+            showtime: false,
             content: "50% of CS:GO professional players using EC2 are claw grip. 50% of players are palm grip.",
             callback: this.print
           },
@@ -234,6 +241,7 @@ export default {
           {
             name: "FK2",
             Type: 4,
+            showtime: false,
             content: "50% of CS:GO professional players using FK2 are claw grip, 50% of players are palm grip.",
             callback: this.print
           },
@@ -241,12 +249,14 @@ export default {
           {
             name: "ZA12",
             Type: 6,
+            showtime: false,
             content:"65% of CS:GO professional players using ZA12 are claw grip. 35% of players are palm grip.",
             callback: this.print
           },
           {
             name: "S1",
             Type: 8,
+            showtime: false,
             content:"65% of CS:GO professional players using S2 are claw grip. 35% of players are palm grip.",
             callback: this.print
           },
@@ -277,12 +287,14 @@ export default {
           {
             name: "ZA13",
             Type: 7,
+            showtime: false,
             content:"50% of CS:GO professional players using ZA13 are claw grip, 50% of players are palm grip.",
             callback: this.print
           },
           {
             name: "S2",
             Type: 9,
+            showtime: false,
             content:"60% of CS:GO professional players using S2 are claw grip. 40% of players are palm grip.",
             callback: this.print
           }
@@ -296,6 +308,45 @@ export default {
 
   },
   methods: {
+    select(item,index) {
+
+      if (this.modelOne == "") {
+        this.modelOne = item.name;
+      } else {//m1不為空
+        if (this.modelOne == item.name) {
+          if (this.modelTwo !== "") {
+            this.modelOne = this.modelTwo;
+            this.modelTwo = "";
+              for (var i = 0 ; i<= 19; i++){
+                if (this.itemlist[i].name !== "") {
+                  this.itemlist[i].showtime = false;
+                }
+              }
+          }else {this.modelOne = "";}
+        } else {
+          if (this.modelTwo == "") {
+            this.modelTwo = item.name;
+            for (var i = 0 ; i<= 19; i++){
+              if (this.itemlist[i].name !== "" && this.itemlist[i].name !== this.modelOne && this.itemlist[i].name !== this.modelTwo) {
+                this.itemlist[i].showtime = true;
+              }
+            }
+          } else {
+            if (this.modelTwo == item.name) {
+              this.modelTwo = "";
+              for (var i = 0 ; i<= 19; i++){
+                if (this.itemlist[i].name !== "") {
+                  this.itemlist[i].showtime = false;
+                }
+              }
+            }
+          }
+        }
+      };
+
+
+      console.log(item.name,this.modelOne===item.name,this.modelOne,this.modelTwo,this.itemlist)
+    },
     handleSearch() {
       const file = this.radio.shape + this.radio.coating;
       switch(file) {
