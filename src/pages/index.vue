@@ -126,6 +126,11 @@
 </template>
 
 <script>
+import Logo from '~/components/Logo.vue'
+import Es from '~/config/es.json'
+import Eg from '~/config/eg.json'
+import As from '~/config/as.json'
+import Ag from '~/config/ag.json'
 
 export default {
   components: {
@@ -277,6 +282,7 @@ export default {
         }
     ],
   mounted() {
+    console.log("Es,Eg,As,Ag: ", Es,Eg,As,Ag);
     this.getTradeList();
   },
   methods: {
@@ -369,7 +375,6 @@ export default {
   /* box-shadow: 0 0 7px #CC0040; */
 }
  li {list-style-type:none;}
-
 .divMask {
             content: '';
             position: absolute;
@@ -382,7 +387,5 @@ export default {
             background-repeat: no-repeat;
             z-index: 3;
             background-size: 30%;
-            
-
 }
 </style>
