@@ -2,7 +2,6 @@
   <div class="container">
     <div style="height:60px;width:100%;background:#000;top:0px;position:absolute;">
       <a href="https://zowie.benq.com/en-us" target="_self" style="padding:5px 30px">
-                         
                         <svg id="zowie_logo" width="120" height="60" viewBox="0 0 140.625 39.751">
                             <path fill="#D4003B" d="M39.704,33.709H14.245c-4.521,0-8.174-3.66-8.174-8.165c0-4.506,3.653-8.182,8.174-8.182h14.207
                             c1.689,0,3.062-1.367,3.062-3.063c0-1.68-1.373-3.055-3.062-3.055H14.245c-7.891,0-14.307,6.409-14.307,14.3
