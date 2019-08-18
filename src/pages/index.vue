@@ -89,13 +89,28 @@
     <section>
     <div class="content2" style="background:#000;padding:50px 30px;margin-top:100px;margin-bottom:60px">
       <h1 style="color:#B12741;font-size: 30px;line-height: 37px;padding:30px 0;">Select 2 models to compare.</h1>
-      <p style="color:#fff;font-size: 18px;line-height: 22px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, iure.</p>
-      <p style="color:#fff;font-size: 18px;line-height: 22px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, iure.</p>
-      <p style="color:#fff;font-size: 18px;line-height: 22px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, iure.</p>
-      <p style="color:#fff;font-size: 18px;line-height: 22px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, iure.</p>
-      <p style="color:#fff;font-size: 18px;line-height: 22px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, iure.</p>
-      <p style="color:#fff;font-size: 18px;line-height: 22px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, iure.</p>
-      <p style="color:#fff;font-size: 18px;line-height: 22px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, iure.</p>
+      <!-- <p style="color:#fff;font-size: 18px;line-height: 22px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, iure.</p> -->
+      
+      <div style="line-height:80px;color:#fff;font-size: 30px;padding:325 0;text-align: center;height:80px;width:20%;background:#444;float:left;border:#000 1px solid;"> </div>
+      <div style="line-height:80px;color:#fff;font-size: 30px;padding:325 0;text-align: center;height:80px;width:20%;background:#444;float:left;border:#000 1px solid;"> EC Series</div>
+      <div style="line-height:80px;color:#fff;font-size: 30px;padding:325 0;text-align: center;height:80px;width:20%;background:#444;float:left;border:#000 1px solid;"> FK Series</div>
+      <div style="line-height:80px;color:#fff;font-size: 30px;padding:325 0;text-align: center;height:80px;width:20%;background:#444;float:left;border:#000 1px solid;"> ZA Series</div>
+      <div style="line-height:80px;color:#fff;font-size: 30px;padding:325 0;text-align: center;height:80px;width:20%;background:#444;float:left;border:#000 1px solid;"> S Series</div>
+      <ul style="padding:0px">
+        <li v-for="(item,index) in itemlist" :key="index" style="position: relative;min-height:180px;background: #FFFFFF;border: 1px solid #000000;width:20%;float:left;text-align:center;padding:26px 17px">
+          <div class="divMask" style="overflow: hidden;" v-show="item.showtime"></div>
+          <div @click="select(item,$event)">
+            <span style="font-size: 26px;line-height: 30px;text-align: center;">{{item.name}}</span>
+            <span style="font-size: 36px;line-height:"><br>{{item.title}}</span>
+            <p style="text-align:left;font-size: 14px;line-height: 16px;">{{item.content}}</p>
+          </div>
+        </li>
+      </ul>
+      
+      
+      
+      
+      <div style="clear:both;"></div>
     </div>
     </section>
 
@@ -111,11 +126,163 @@
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
 
 export default {
   components: {
-    Logo
+  },
+  data() {
+  return {
+    itemlist:[
+        {
+          name: "",
+          title:"XL",
+          Type: "",
+          content: "",
+          showtime: true,
+          // callback: this.print
+        },
+        {
+          name: "",
+          title:"",
+          Type: "",
+          content: "",
+          showtime: true,
+          // callback: this.print
+        },
+        {
+          name: "FK1+",
+          Type: 2,
+          content: "90% of CS:GO professional players using FK1+ are claw grip.",
+          callback: this.print
+        },
+        {
+          name: "",
+          title:"",
+          Type: "",
+          content: "",
+          showtime: true,
+          // callback: this.print
+        },
+        {
+          name: "",
+          title:"",
+          Type: "",
+          content: "",
+          showtime: true,
+          // callback: this.print
+        },
+        {
+          name: "",
+          title:"L",
+          Type: "",
+          content: "",
+          showtime: true,
+          // callback: this.print
+        },
+        {
+          name: "EC1",
+          Type: 0,
+          content: "80% of CS:GO professional players using EC1 are palm grip. 20% of players are claw grip.",
+          callback: this.print
+        },
+        {
+          name: "FK1",
+          Type: 3,
+          content: "80% of CS:GO professional players using FK1 are claw grip. 20% of players are palm grip.",
+          callback: this.print
+        },
+        {
+          name: "ZA11",
+          Type: 5,
+          content: "90% of CS:GO professional players using ZA11 are palm grip.",
+          callback: this.print
+        },
+        {
+          name: "",
+          title:"",
+          Type: "",
+          content: "",
+          showtime: true,
+          // callback: this.print
+        },
+        {
+          name: "",
+          title:"M",
+          Type: "",
+          content: "",
+          showtime: true,
+          // callback: this.print
+        },
+        {
+          name: "EC2",
+          Type: 1,
+          content: "50% of CS:GO professional players using EC2 are claw grip. 50% of players are palm grip.",
+          callback: this.print
+        },
+
+        {
+          name: "FK2",
+          Type: 4,
+          content: "50% of CS:GO professional players using FK2 are claw grip, 50% of players are palm grip.",
+          callback: this.print
+        },
+
+        {
+          name: "ZA12",
+          Type: 6,
+          content:"65% of CS:GO professional players using ZA12 are claw grip. 35% of players are palm grip.",
+          callback: this.print
+        },
+        {
+          name: "S1",
+          Type: 8,
+          content:"65% of CS:GO professional players using S2 are claw grip. 35% of players are palm grip.",
+          callback: this.print
+        },
+        {
+          name: "",
+          title:"S",
+          Type: "",
+          content: "",
+          showtime: true,
+          // callback: this.print
+        },
+        {
+          name: "",
+          title:"",
+          Type: "",
+          content: "",
+          showtime: true,
+          // callback: this.print
+        },
+        {
+          name: "",
+          title:"",
+          Type: "",
+          content: "",
+          showtime: true,
+          // callback: this.print
+        },
+        {
+          name: "ZA13",
+          Type: 7,
+          content:"50% of CS:GO professional players using ZA13 are claw grip, 50% of players are palm grip.",
+          callback: this.print
+        },
+        {
+          name: "S2",
+          Type: 9,
+          content:"60% of CS:GO professional players using S2 are claw grip. 40% of players are palm grip.",
+          callback: this.print
+        }
+    ],
+  mounted() {
+    this.getTradeList();
+  },
+  methods: {
+  
+  }
+  }
   }
 }
 </script>
@@ -202,4 +369,20 @@ export default {
   /* box-shadow: 0 0 7px #CC0040; */
 }
  li {list-style-type:none;}
+
+.divMask {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top:0;
+            left: 0;
+            background: rgba(0,0,0,0.1);
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 3;
+            background-size: 30%;
+            
+
+}
 </style>
