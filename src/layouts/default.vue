@@ -24,18 +24,24 @@ html {
   margin: 0;
 }
 
-.button--green {
+.button--mouse {
   display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
+  /* border-radius: 4px; */
+  border: 1px solid #CC0040;;
+  color: #CC0040;;
   text-decoration: none;
   padding: 10px 30px;
+  font-size: 20px;
+  line-height: 23px;
+  text-align: center;
+  margin-right:30px;
+  width:160px;
+  /* height: 40px; */
 }
 
-.button--green:hover {
+.button--mouse:hover {
   color: #fff;
-  background-color: #3b8070;
+  background-color: #CC0040;
 }
 
 .button--grey {
