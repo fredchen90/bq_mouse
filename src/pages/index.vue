@@ -72,7 +72,7 @@
       <div class="links">
         <a
           href=""
-          target="_blank"
+          target="_self"
           class="button--mouse"
           @click.prevent="handleSearch"
         >
@@ -90,8 +90,8 @@
     </div>
 
     <!-- Mouse Table -->
-    <section>
-      <div class="content2" style="background:#000;padding:50px 30px;margin-top:100px;margin-bottom:60px">
+    <section v-if="secondArea">
+      <div class="content2" style="background:#000;padding:50px 30px;margin-top:40px;margin-bottom:60px">
         <h1 style="color:#B12741;font-size: 30px;line-height: 37px;padding:30px 0;">Select 2 models to compare.</h1>
         <!-- <p style="color:#fff;font-size: 18px;line-height: 22px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, iure.</p> -->
         
@@ -101,11 +101,14 @@
         <div style="line-height:80px;color:#fff;font-size: 30px;padding:325 0;text-align: center;height:80px;width:20%;background:#444;float:left;border:#000 1px solid;"> ZA Series</div>
         <div style="line-height:80px;color:#fff;font-size: 30px;padding:325 0;text-align: center;height:80px;width:20%;background:#444;float:left;border:#000 1px solid;"> S Series</div>
         <ul style="padding:0px">
-          <li v-for="(item,index) in itemlist" :key="index" style="position: relative;min-height:180px;background: #FFFFFF;border: 1px solid #000000;width:20%;float:left;text-align:center;padding:26px 17px">
-            <div class="divMask" style="overflow: hidden;" v-show="item.showtime"></div>
-            <div @click="select(item,$event)">
+          <li v-for="(item,index) in itemlist" :key="index" style="position: relative;min-height:230px;background: #FFFFFF;border: 1px solid #000000;width:20%;float:left;text-align:center;padding:26px 17px">
+            <div class="divMask" style="overflow: hidden;" v-if="item.showtime != false || item.covered != false"></div>
+            <div @click="select(item,index)">
               <span style="font-size: 26px;line-height: 30px;text-align: center;">{{item.name}}</span>
-              <span style="font-size: 36px;line-height:"><br>{{item.title}}</span>
+              <div style="height:80px;width:100%" v-if="item.name != ''">
+                <div style="width:40px;height:40px;border:3px #888 solid;" v-if="item.covered != true && item.showtime != true "></div>
+              </div>
+              <span style="font-size: 36px;line-height:" v-if="item.title != null"><br><br>{{item.title}}</span>
               <p style="text-align:left;font-size: 14px;line-height: 16px;">{{item.content}}</p>
             </div>
           </li>
@@ -119,8 +122,7 @@
 
       //Fred 請幫我塞這邊
       <div>{{ config_file }}</div>
-      </br>
-      </br>
+
       <div v-if="config_file !== null">
         <p>About FK1: {{ config_file["EC1"].description }} </p>
         <p>About Fk2: {{ config_file["EC2"].description }} </p>
@@ -153,12 +155,16 @@ export default {
         shape: null,
         coating: null
       },
+      modelOne:"",
+      modelTwo:"",
+      secondArea: false,
       config_file: null,
       itemlist:[
           {
             name: "",
             title:"XL",
             Type: "",
+            covered: true,
             content: "",
             showtime: true,
             // callback: this.print
@@ -167,6 +173,7 @@ export default {
             name: "",
             title:"",
             Type: "",
+            covered: true,
             content: "",
             showtime: true,
             // callback: this.print
@@ -175,6 +182,8 @@ export default {
             name: "FK1+",
             Type: 2,
             content: "90% of CS:GO professional players using FK1+ are claw grip.",
+            showtime: false,
+            covered: false,
             callback: this.print
           },
           {
@@ -182,6 +191,7 @@ export default {
             title:"",
             Type: "",
             content: "",
+            covered: true,
             showtime: true,
             // callback: this.print
           },
@@ -190,6 +200,7 @@ export default {
             title:"",
             Type: "",
             content: "",
+            covered: true,
             showtime: true,
             // callback: this.print
           },
@@ -198,24 +209,31 @@ export default {
             title:"L",
             Type: "",
             content: "",
+            covered: true,
             showtime: true,
             // callback: this.print
           },
           {
             name: "EC1",
             Type: 0,
+            showtime: false,
+            covered: false,
             content: "80% of CS:GO professional players using EC1 are palm grip. 20% of players are claw grip.",
             callback: this.print
           },
           {
             name: "FK1",
             Type: 3,
+            showtime: false,
+            covered: false,
             content: "80% of CS:GO professional players using FK1 are claw grip. 20% of players are palm grip.",
             callback: this.print
           },
           {
             name: "ZA11",
             Type: 5,
+            showtime: false,
+            covered: false,
             content: "90% of CS:GO professional players using ZA11 are palm grip.",
             callback: this.print
           },
@@ -224,6 +242,7 @@ export default {
             title:"",
             Type: "",
             content: "",
+            covered: true,
             showtime: true,
             // callback: this.print
           },
@@ -232,12 +251,15 @@ export default {
             title:"M",
             Type: "",
             content: "",
+            covered: true,
             showtime: true,
             // callback: this.print
           },
           {
             name: "EC2",
             Type: 1,
+            showtime: false,
+            covered: false,
             content: "50% of CS:GO professional players using EC2 are claw grip. 50% of players are palm grip.",
             callback: this.print
           },
@@ -245,6 +267,8 @@ export default {
           {
             name: "FK2",
             Type: 4,
+            showtime: false,
+            covered: false,
             content: "50% of CS:GO professional players using FK2 are claw grip, 50% of players are palm grip.",
             callback: this.print
           },
@@ -252,12 +276,16 @@ export default {
           {
             name: "ZA12",
             Type: 6,
+            showtime: false,
+            covered: false,
             content:"65% of CS:GO professional players using ZA12 are claw grip. 35% of players are palm grip.",
             callback: this.print
           },
           {
             name: "S1",
             Type: 8,
+            showtime: false,
+            covered: false,
             content:"65% of CS:GO professional players using S2 are claw grip. 35% of players are palm grip.",
             callback: this.print
           },
@@ -266,6 +294,7 @@ export default {
             title:"S",
             Type: "",
             content: "",
+            covered: true,
             showtime: true,
             // callback: this.print
           },
@@ -274,6 +303,7 @@ export default {
             title:"",
             Type: "",
             content: "",
+            covered: true,
             showtime: true,
             // callback: this.print
           },
@@ -282,18 +312,23 @@ export default {
             title:"",
             Type: "",
             content: "",
+            covered: true,
             showtime: true,
             // callback: this.print
           },
           {
             name: "ZA13",
             Type: 7,
+            showtime: false,
+            covered: false,
             content:"50% of CS:GO professional players using ZA13 are claw grip, 50% of players are palm grip.",
             callback: this.print
           },
           {
             name: "S2",
             Type: 9,
+            showtime: false,
+            covered: false,
             content:"60% of CS:GO professional players using S2 are claw grip. 40% of players are palm grip.",
             callback: this.print
           }
@@ -307,24 +342,74 @@ export default {
 
   },
   methods: {
+    select(item,index) {
+
+      if (this.modelOne == "") {
+        this.modelOne = item.name;
+      } else {//m1不為空
+        if (this.modelOne == item.name) {
+          if (this.modelTwo !== "") {
+            this.modelOne = this.modelTwo;
+            this.modelTwo = "";
+              for (var i = 0 ; i<= 19; i++){
+                if (this.itemlist[i].name !== "") {
+                  this.itemlist[i].showtime = false;
+                }
+              }
+          }else {this.modelOne = "";}
+        } else {
+          if (this.modelTwo == "") {
+            this.modelTwo = item.name;
+            for (var i = 0 ; i<= 19; i++){
+              if (this.itemlist[i].name !== "" && this.itemlist[i].name !== this.modelOne && this.itemlist[i].name !== this.modelTwo) {
+                this.itemlist[i].showtime = true;
+              }
+            }
+          } else {
+            if (this.modelTwo == item.name) {
+              this.modelTwo = "";
+              for (var i = 0 ; i<= 19; i++){
+                if (this.itemlist[i].name !== "") {
+                  this.itemlist[i].showtime = false;
+                }
+              }
+            }
+          }
+        }
+      };
+
+
+      console.log(item.name,this.modelOne===item.name,this.modelOne,this.modelTwo,this.itemlist)
+    },
     handleSearch() {
+      for (var i = 0; i<= 19; i++) {
+          this.itemlist[i].covered = false;
+      };
       const file = this.radio.shape + this.radio.coating;
       switch(file) {
         case "ac":
           console.log("use es file");
+          this.secondArea = "ac";
           this.config_file = Es;
+          this.itemlist[2].covered =this.itemlist[7].covered =this.itemlist[8].covered =this.itemlist[12].covered =this.itemlist[13].covered =this.itemlist[14].covered =this.itemlist[18].covered =this.itemlist[19].covered  = true;
           break;
         case "ad":
           console.log("use eg file");
+          this.secondArea = "ad";
           this.config_file = Eg;
+          this.itemlist[2].covered =this.itemlist[7].covered =this.itemlist[8].covered =this.itemlist[12].covered =this.itemlist[13].covered =this.itemlist[14].covered =this.itemlist[18].covered =this.itemlist[19].covered  = true;
           break;
         case "bc":
           console.log("use as file");
+          this.secondArea = "bc";
           this.config_file = As;
+          this.itemlist[6].covered = this.itemlist[11].covered = true;
           break;
         case "bd":
           console.log("use ag file");
+          this.secondArea = "bd";
           this.config_file = Ag;
+          this.itemlist[2].covered =this.itemlist[7].covered =this.itemlist[6].covered =this.itemlist[11].covered =this.itemlist[13].covered =this.itemlist[18].covered = true;
           break;
         default:
           console.log("no config");
@@ -352,7 +437,7 @@ export default {
 }
 
 .title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
+  font-family: 'Montserrat','Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   display: block;
   font-weight: 300;
@@ -370,7 +455,7 @@ export default {
 }
 
 .links {
-  padding-top: 15px;
+  padding: 15px 0 50px;
 }
 .content {
   width: 1112px;
