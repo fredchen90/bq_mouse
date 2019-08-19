@@ -106,7 +106,10 @@
             <div @click="select(item,index)">
               <span style="font-size: 26px;line-height: 30px;text-align: center;">{{item.name}}</span>
               <div style="height:80px;width:100%" v-if="item.name != ''">
-                <div style="width:40px;height:40px;border:3px #888 solid;" v-if="item.covered != true && item.showtime != true "></div>
+                <div style="width:40px;height:40px;border:3px #888 solid;position:related;" v-if="item.covered != true && item.showtime != true ">
+                    <div style="background:#CC0040;height:100%" v-if="modelTwo == item.name"><div class="checked"></div></div>
+                    <div style="background:#000;height:100%" v-if="modelOne == item.name"><div class="checked"></div></div>
+                </div>
               </div>
               <span style="font-size: 36px;line-height:" v-if="item.title != null"><br><br>{{item.title}}</span>
               <p style="text-align:left;font-size: 14px;line-height: 16px;">{{item.content}}</p>
@@ -346,7 +349,7 @@ export default {
 
       if (this.modelOne == "") {
         this.modelOne = item.name;
-      } else {//m1不為空
+      } else {
         if (this.modelOne == item.name) {
           if (this.modelTwo !== "") {
             this.modelOne = this.modelTwo;
@@ -385,6 +388,8 @@ export default {
       for (var i = 0; i<= 19; i++) {
           this.itemlist[i].covered = false;
       };
+      this.modelOne= "";
+      this.modelTwo= "";
       const file = this.radio.shape + this.radio.coating;
       switch(file) {
         case "ac":
@@ -518,5 +523,15 @@ export default {
             background-repeat: no-repeat;
             z-index: 3;
             background-size: 30%;
+}
+.checked {            
+            content: "";
+            width: 15px;
+            height: 30px;
+            margin-left: 10px;
+            border: 4px solid #fff;
+            border-top: none;
+            border-left: none;
+            transform: rotate(45deg)
 }
 </style>
