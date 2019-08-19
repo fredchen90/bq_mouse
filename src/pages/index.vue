@@ -121,15 +121,19 @@
     <div class="content">
 
       //Fred 請幫我塞這邊
-      <div>{{ config_file }}</div>
+      <div>{{ configFile }}</div>
 
-      <div v-if="config_file !== null">
-        <p>About FK1: {{ config_file["EC1"].description }} </p>
-        <p>About Fk2: {{ config_file["EC2"].description }} </p>
+      <div v-if="configFile !== null">
+        <p>About FK1: {{ configFile["EC1"].description }} </p>
+        <p>About Fk2: {{ configFile["EC2"].description }} </p>
 
-        <p>Length: {{ config_file["EC1"].length }} </p>
-        <p>Height: {{ config_file["EC1"].height }} </p>
-        <p>Width: {{ config_file["EC1"].width }} </p>
+        <p>Length: {{ configFile["FK1+"].length }} </p>
+        <p>Height: {{ configFile["FK1+"].height }} </p>
+        <p>Width: {{ configFile["FK1+"].width }} </p>
+      </div>
+
+      <div>
+        <p>{{ this.featureDescription }}</p>
       </div>
 
 
@@ -158,7 +162,8 @@ export default {
       modelOne:"",
       modelTwo:"",
       secondArea: false,
-      config_file: null,
+      configFile: null,
+      featureDescription: "",
       itemlist:[
           {
             name: "",
@@ -378,7 +383,7 @@ export default {
         }
       };
 
-
+      this.chioceFeature();
       console.log(item.name,this.modelOne===item.name,this.modelOne,this.modelTwo,this.itemlist)
     },
     handleSearch() {
@@ -390,25 +395,25 @@ export default {
         case "ac":
           console.log("use es file");
           this.secondArea = "ac";
-          this.config_file = Es;
+          this.configFile = Es;
           this.itemlist[2].covered =this.itemlist[7].covered =this.itemlist[8].covered =this.itemlist[12].covered =this.itemlist[13].covered =this.itemlist[14].covered =this.itemlist[18].covered =this.itemlist[19].covered  = true;
           break;
         case "ad":
           console.log("use eg file");
           this.secondArea = "ad";
-          this.config_file = Eg;
+          this.configFile = Eg;
           this.itemlist[2].covered =this.itemlist[7].covered =this.itemlist[8].covered =this.itemlist[12].covered =this.itemlist[13].covered =this.itemlist[14].covered =this.itemlist[18].covered =this.itemlist[19].covered  = true;
           break;
         case "bc":
           console.log("use as file");
           this.secondArea = "bc";
-          this.config_file = As;
+          this.configFile = As;
           this.itemlist[6].covered = this.itemlist[11].covered = true;
           break;
         case "bd":
           console.log("use ag file");
           this.secondArea = "bd";
-          this.config_file = Ag;
+          this.configFile = Ag;
           this.itemlist[2].covered =this.itemlist[7].covered =this.itemlist[6].covered =this.itemlist[11].covered =this.itemlist[13].covered =this.itemlist[18].covered = true;
           break;
         default:
@@ -419,6 +424,214 @@ export default {
     handleClear() {
       this.radio.shape = null;
       this.radio.coating = null;
+    },
+    chioceFeature() {
+      switch(this.modelOne) {
+        case "EC1":
+        case "EC2":
+          this.featureDescription = "EC Series has the same shape and comes in two sizes, EC1 is bigger and EC2 is smaller.";
+          break;
+        case "FK1+":
+          switch(this.modelTwo) {
+            case "FK1":
+            case "FK2":
+              this.featureDescription = "FK Series has the same shape and comes in three sizes, FK1+ is the biggest, FK1 is in between, and FK2 is the smallest.";
+              break;
+            case "ZA11":
+            case "ZA12":
+            case "ZA13":
+              this.featureDescription = `
+              1. Both series are ambidextrous and are able to switch between right or left-hand modes by holding down button combinations during plug-in. No drivers required.<br>
+              2. FK Series has a lower profile and its hump is closer to fingers, providing less support for palm; ZA Series has a higher profile, providing more support for palm.<br>
+              3. ZA Series has projected notches on both front ends that allow users to lift the mouse easily.
+              `;
+              break;
+            case "S1":
+            case "S2":
+              this.featureDescription = `
+              1. Both series are ambidextrous. The S Series without right-side buttons is designed for right-handed.<br>
+              2. FK Series has a lower profile providing less support for palm; S Series has a higher profile, providing more support for palm.<br>
+              3. S Series is designed to have a shorter overall length, allowing users to easily wrap around and hold the mouse. The front ends of the mouse have been raised to provide more space to place the 4th finger and easily lift the mouse.
+              `;
+              break;
+          }
+          break;
+        case "FK1":
+          switch(this.modelTwo) {
+            case "FK1+":
+            case "FK2":
+              this.featureDescription = "FK Series has the same shape and comes in three sizes, FK1+ is the biggest, FK1 is in between, and FK2 is the smallest.";
+              break;
+            case "ZA11":
+            case "ZA12":
+            case "ZA13":
+              this.featureDescription = `
+              1. Both series are ambidextrous and are able to switch between right or left-hand modes by holding down button combinations during plug-in. No drivers required.<br>
+              2. FK Series has a lower profile and its hump is closer to fingers, providing less support for palm; ZA Series has a higher profile, providing more support for palm.<br>
+              3. ZA Series has projected notches on both front ends that allow users to lift the mouse easily.
+              `;
+              break;
+            case "S1":
+            case "S2":
+              this.featureDescription = `
+              1. Both series are ambidextrous. The S Series without right-side buttons is designed for right-handed.<br>
+              2. FK Series has a lower profile providing less support for palm; S Series has a higher profile, providing more support for palm.<br>
+              3. S Series is designed to have a shorter overall length, allowing users to easily wrap around and hold the mouse. The front ends of the mouse have been raised to provide more space to place the 4th finger and easily lift the mouse.
+              `;
+              break;
+          }
+          break;
+        case "FK2":
+          switch(this.modelTwo) {
+            case "FK1+":
+            case "FK1":
+              this.featureDescription = "FK Series has the same shape and comes in three sizes, FK1+ is the biggest, FK1 is in between, and FK2 is the smallest.";
+              break;
+            case "ZA11":
+            case "ZA12":
+            case "ZA13":
+              this.featureDescription = `
+              1. Both series are ambidextrous and are able to switch between right or left-hand modes by holding down button combinations during plug-in. No drivers required.<br>
+              2. FK Series has a lower profile and its hump is closer to fingers, providing less support for palm; ZA Series has a higher profile, providing more support for palm.<br>
+              3. ZA Series has projected notches on both front ends that allow users to lift the mouse easily.
+              `;
+              break;
+            case "S1":
+            case "S2":
+              this.featureDescription = `
+              1. Both series are ambidextrous. The S Series without right-side buttons is designed for right-handed.<br>
+              2. FK Series has a lower profile providing less support for palm; S Series has a higher profile, providing more support for palm.<br>
+              3. S Series is designed to have a shorter overall length, allowing users to easily wrap around and hold the mouse. The front ends of the mouse have been raised to provide more space to place the 4th finger and easily lift the mouse.
+              `;
+              break;
+          }
+          break;
+        case "ZA11":
+          switch(this.modelTwo) {
+            case "FK1+":
+            case "FK1":
+            case "FK2":
+              this.featureDescription = `
+              1. Both series are ambidextrous and are able to switch between right or left-hand modes by holding down button combinations during plug-in. No drivers required.<br>
+              2. FK Series has a lower profile and its hump is closer to fingers, providing less support for palm; ZA Series has a higher profile, providing more support for palm.<br>
+              3. ZA Series has projected notches on both front ends that allow users to lift the mouse easily.
+              `;
+              break;
+            case "ZA11":
+            case "ZA13":
+              this.featureDescription = "ZA Series has the same shape and comes in three sizes, ZA11 is the biggest, ZA12 is in between, and ZA13 is the smallest.";
+              break;
+            case "S1":
+            case "S2":
+              this.featureDescription = `
+              1. Both series are ambidextrous, and the S Series without right-side buttons is designed for right-handed users.<br>
+              2. Both ZA and S Series have a high profile design providing sufficient palm support, however their highest points are in different positions. The ZA’s peak is closer to the back while the S’s peak is more in the center. Because of this the weight distribution will be different giving each mouse a different movement feel.<br>
+              3. Both ZA and S Series's front ends are designed for easy lifting during swiping movements or quick adjustments. ZA has a notch for your 4th finger while the S has more room to place the 4th finger.
+              `;
+              break;
+          }
+          break;
+        case "ZA12":
+          switch(this.modelTwo) {
+            case "FK1+":
+            case "FK1":
+            case "FK2":
+              this.featureDescription = `
+              1. Both series are ambidextrous and are able to switch between right or left-hand modes by holding down button combinations during plug-in. No drivers required.<br>
+              2. FK Series has a lower profile and its hump is closer to fingers, providing less support for palm; ZA Series has a higher profile, providing more support for palm.<br>
+              3. ZA Series has projected notches on both front ends that allow users to lift the mouse easily.
+              `;
+              break;
+            case "ZA12":
+            case "ZA13":
+              this.featureDescription = "ZA Series has the same shape and comes in three sizes, ZA11 is the biggest, ZA12 is in between, and ZA13 is the smallest.";
+              break;
+            case "S1":
+            case "S2":
+              this.featureDescription = `
+              1. Both series are ambidextrous, and the S Series without right-side buttons is designed for right-handed users.<br>
+              2. Both ZA and S Series have a high profile design providing sufficient palm support, however their highest points are in different positions. The ZA’s peak is closer to the back while the S’s peak is more in the center. Because of this the weight distribution will be different giving each mouse a different movement feel.<br>
+              3. Both ZA and S Series's front ends are designed for easy lifting during swiping movements or quick adjustments. ZA has a notch for your 4th finger while the S has more room to place the 4th finger.
+              `;
+              break;
+          }
+          break;
+        case "ZA13":
+          switch(this.modelTwo) {
+            case "FK1+":
+            case "FK1":
+            case "FK2":
+              this.featureDescription = `
+              1. Both series are ambidextrous and are able to switch between right or left-hand modes by holding down button combinations during plug-in. No drivers required.<br>
+              2. FK Series has a lower profile and its hump is closer to fingers, providing less support for palm; ZA Series has a higher profile, providing more support for palm.<br>
+              3. ZA Series has projected notches on both front ends that allow users to lift the mouse easily.
+              `;
+              break;
+            case "ZA11":
+            case "ZA12":
+              this.featureDescription = "ZA Series has the same shape and comes in three sizes, ZA11 is the biggest, ZA12 is in between, and ZA13 is the smallest.";
+              break;
+            case "S1":
+            case "S2":
+              this.featureDescription = `
+              1. Both series are ambidextrous, and the S Series without right-side buttons is designed for right-handed users.<br>
+              2. Both ZA and S Series have a high profile design providing sufficient palm support, however their highest points are in different positions. The ZA’s peak is closer to the back while the S’s peak is more in the center. Because of this the weight distribution will be different giving each mouse a different movement feel.<br>
+              3. Both ZA and S Series's front ends are designed for easy lifting during swiping movements or quick adjustments. ZA has a notch for your 4th finger while the S has more room to place the 4th finger.
+              `;
+              break;
+          }
+          break;
+        case "S1":
+          switch(this.modelTwo) {
+            case "FK1+":
+            case "FK1":
+            case "FK2":
+              this.featureDescription = `
+              1. Both series are ambidextrous. The S Series without right-side buttons is designed for right-handed.<br>
+              2. FK Series has a lower profile providing less support for palm; S Series has a higher profile, providing more support for palm.<br>
+              3. S Series is designed to have a shorter overall length, allowing users to easily wrap around and hold the mouse. The front ends of the mouse have been raised to provide more space to place the 4th finger and easily lift the mouse.
+              `;
+              break;
+            case "ZA11":
+            case "ZA12":
+            case "ZA13":
+              this.featureDescription = `
+              1. Both series are ambidextrous, and the S Series without right-side buttons is designed for right-handed users.<br>
+              2. Both ZA and S Series have a high profile design providing sufficient palm support, however their highest points are in different positions. The ZA’s peak is closer to the back while the S’s peak is more in the center. Because of this the weight distribution will be different giving each mouse a different movement feel.<br>
+              3. Both ZA and S Series's front ends are designed for easy lifting during swiping movements or quick adjustments. ZA has a notch for your 4th finger while the S has more room to place the 4th finger.              
+              `;
+              break;
+            case "S2":
+              this.featureDescription = "S Series has the same shape and comes in two sizes, S1 is bigger and S2 is smaller.";
+              break;
+          }
+          break;
+        case "S2":
+          switch(this.modelTwo) {
+            case "FK1+":
+            case "FK1":
+            case "FK2":
+              this.featureDescription = `
+              1. Both series are ambidextrous. The S Series without right-side buttons is designed for right-handed.<br>
+              2. FK Series has a lower profile providing less support for palm; S Series has a higher profile, providing more support for palm.<br>
+              3. S Series is designed to have a shorter overall length, allowing users to easily wrap around and hold the mouse. The front ends of the mouse have been raised to provide more space to place the 4th finger and easily lift the mouse.
+              `;
+              break;
+            case "ZA11":
+            case "ZA12":
+            case "ZA13":
+              this.featureDescription = `
+              1. Both series are ambidextrous, and the S Series without right-side buttons is designed for right-handed users.<br>
+              2. Both ZA and S Series have a high profile design providing sufficient palm support, however their highest points are in different positions. The ZA’s peak is closer to the back while the S’s peak is more in the center. Because of this the weight distribution will be different giving each mouse a different movement feel.<br>
+              3. Both ZA and S Series's front ends are designed for easy lifting during swiping movements or quick adjustments. ZA has a notch for your 4th finger while the S has more room to place the 4th finger.              
+              `;
+              break;
+            case "S1":
+              this.featureDescription = "S Series has the same shape and comes in two sizes, S1 is bigger and S2 is smaller.";
+              break;
+          }
+          break;
+      }
     }
   }
 }
