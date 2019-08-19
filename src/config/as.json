@@ -25,7 +25,7 @@
         "width": "",
         "link": ""
     },
-    "FK1_PLUS": {
+    "FK1+": {
         "checkbox": true,
         "model": "FK1+",
         "pic_right": "fk1+-right-photo.png",
