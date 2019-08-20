@@ -655,11 +655,7 @@ export default {
             case "FK1+":
             case "FK1":
             case "FK2":
-              this.featureDescription = `
-              1. Both series are ambidextrous and are able to switch between right or left-hand modes by holding down button combinations during plug-in. No drivers required.<br>
-              2. FK Series has a lower profile and its hump is closer to fingers, providing less support for palm; ZA Series has a higher profile, providing more support for palm.<br>
-              3. ZA Series has projected notches on both front ends that allow users to lift the mouse easily.
-              `;
+              this.featureDescription = `1. Both series are ambidextrous and are able to switch between right or left-hand modes by holding down button combinations during plug-in. No drivers required. \n\n 2. FK Series has a lower profile and its hump is closer to fingers, providing less support for palm; ZA Series has a higher profile, providing more support for palm. \n\n 3. ZA Series has projected notches on both front ends that allow users to lift the mouse easily.`;
               break;
             case "ZA11":
             case "ZA12":
