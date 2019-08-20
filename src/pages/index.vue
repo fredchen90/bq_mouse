@@ -164,18 +164,37 @@
         <img v-if="modelTwo != ''" :src='"@/assets/images/"+configFile[modelTwo].pic_red_right+".png"' style="z-index:3;position:absolute;margin-left:550px;width:550px;height:auto;">
       </div>
       <div style="width:100%;">
-        <div style="width:420px">
+        <div style="width:420px; float:left">
           <h3 style="font-weight: bold;font-size: 18px;line-height: 22px;">About {{modelOne}}</h3>
           <p style="padding:20px 0 50px;font-size:14px"> {{configFile[modelOne].description}}</p>
           <h3 v-if="modelTwo != ''" style="font-weight: bold;font-size: 18px;line-height: 22px;">About {{modelTwo}}</h3>
           <p v-if="modelTwo != ''" style="padding:20px 0 50px;font-size:14px"> {{configFile[modelTwo].description}}</p>
         </div>
-        <div style="width:50%">
-          
+        <div style="width:50%;padding:0 40px 60px;float:right">
+          <div style="background:#ddd; width:99%;text-align:center;line-height:40px;border:1px #000 solid;">Measurement</div>
+          <ul style="padding:0;text-align:center">
+            <li style="border:1px #000 solid;height:40px;line-height:40px;width:33%;float:left">(mm)</li>
+            <li style="border:1px #000 solid;height:40px;line-height:40px;width:33%;float:left;color:#CC0040"> {{modelOneSeries}}</li>
+            <li style="border:1px #000 solid;height:40px;line-height:40px;width:33%;float:left;color:#CC0040"> {{modelTwoSeries}}</li>
+            <li style="border:1px #000 solid;height:40px;line-height:40px;width:33%;float:left">Length</li>
+            <li style="border:1px #000 solid;height:40px;line-height:40px;width:33%;float:left">{{configFile[modelOne].length}}</li>
+            <li style="border:1px #000 solid;height:40px;line-height:40px;width:33%;float:left" v-if="modelTwo !=''" >{{configFile[modelTwo].length}}</li>
+            <li style="border:1px #000 solid;height:40px;line-height:40px;width:33%;float:left" v-else >-</li>
+            <li style="border:1px #000 solid;line-height:40px;width:33%;float:left">Height</li>
+            <li style="border:1px #000 solid;line-height:40px;width:33%;float:left">{{configFile[modelOne].height}}</li>
+            <li style="border:1px #000 solid;line-height:40px;width:33%;float:left"  v-if="modelTwo !=''">{{configFile[modelTwo].height}}</li>
+            <li style="border:1px #000 solid;line-height:40px;width:33%;float:left"  v-else>-</li>
+            <li style="border:1px #000 solid;line-height:40px;width:33%;float:left">Width(Middle)</li>
+            <li style="border:1px #000 solid;line-height:40px;width:33%;float:left">{{configFile[modelOne].width}}</li>
+            <li style="border:1px #000 solid;line-height:40px;width:33%;float:left"  v-if="modelTwo !=''">{{configFile[modelTwo].width}}</li>
+            <li style="border:1px #000 solid;line-height:40px;width:33%;float:left"  v-else>-</li>
+
+          </ul>
         </div>
+        <div style="clear:both"></div>
       </div>
-      <div style="width:100%;background:#e8e8e8;padding:40px 40px">
-        <p>{{ this.featureDescription }}</p>
+      <div style="width:100%;background:#e8e8e8;padding:40px 40px" v-if="modelOne != '' && modelTwo !=''">
+        <p class="text-wrapper">{{ this.featureDescription }}</p>
       </div>
       <div>{{ configFile }}</div>
       <div v-if="configFile !== null">
@@ -224,7 +243,9 @@ export default {
         coating: null
       },
       modelOne:"",
+      modelOneSeries:"",
       modelTwo:"",
+      modelTwoSeries:"",
       picMode:"",
       secondArea: false,
       configFile: null,
@@ -251,6 +272,7 @@ export default {
           {
             name: "FK1+",
             Type: 2,
+            Series:"FK Series",
             content: "90% of CS:GO professional players using FK1+ are claw grip.",
             showtime: false,
             covered: false,
@@ -290,6 +312,7 @@ export default {
             Type: 0,
             showtime: false,
             covered: false,
+            Series:"EC Series",
             pic1: "ec1-b-right-photo",
             pic2: "ec1-b-dv-blue-right-photo",
             content: "80% of CS:GO professional players using EC1 are palm grip. 20% of players are claw grip.",
@@ -300,6 +323,7 @@ export default {
             Type: 3,
             showtime: false,
             covered: false,
+            Series:"FK Series",
             pic1: "fk1-right-photo",
             pic2: "fk1-right-photo",
             content: "80% of CS:GO professional players using FK1 are claw grip. 20% of players are palm grip.",
@@ -310,6 +334,7 @@ export default {
             Type: 5,
             showtime: false,
             covered: false,
+            Series:"ZA Series",
             pic1: "za11-right-photo",
             pic2:"za11-white-right-photo",
             content: "90% of CS:GO professional players using ZA11 are palm grip.",
@@ -338,6 +363,7 @@ export default {
             Type: 1,
             showtime: false,
             covered: false,
+            Series:"EC Series",
             pic1: "ec2-b-right-photo",
             pic2: "ec2-b-dv-blue-right-photo",
             content: "50% of CS:GO professional players using EC2 are claw grip. 50% of players are palm grip.",
@@ -349,6 +375,7 @@ export default {
             Type: 4,
             showtime: false,
             covered: false,
+            Series:"FK Series",
             pic1:"fk2-right-photo",
             pic2:"fk2-white-right-photo",
             content: "50% of CS:GO professional players using FK2 are claw grip, 50% of players are palm grip.",
@@ -360,6 +387,7 @@ export default {
             Type: 6,
             showtime: false,
             covered: false,
+            Series:"ZA Series",
             pic1:"za12-right-photo",
             pic2:"za12-right-photo",
             content:"65% of CS:GO professional players using ZA12 are claw grip. 35% of players are palm grip.",
@@ -370,6 +398,7 @@ export default {
             Type: 8,
             showtime: false,
             covered: false,
+            Series:"S Series",
             pic1:"s1-right-photo",
             pic2:"s1-dv-blue-right-photo",
             content:"65% of CS:GO professional players using S2 are claw grip. 35% of players are palm grip.",
@@ -407,6 +436,7 @@ export default {
             Type: 7,
             showtime: false,
             covered: false,
+            Series:"ZA Series",
             pic1:"za13-right-photo",
             pic2:"za13-right-photo",
             content:"50% of CS:GO professional players using ZA13 are claw grip, 50% of players are palm grip.",
@@ -417,6 +447,7 @@ export default {
             Type: 9,
             showtime: false,
             covered: false,
+            Series:"S Series",
             pic1:"s2-right-photo",
             pic2:"s2-dv-blue-right-photo",
             content:"60% of CS:GO professional players using S2 are claw grip. 40% of players are palm grip.",
@@ -436,11 +467,14 @@ export default {
 
       if (this.modelOne == "") {
         this.modelOne = item.name;
+        this.modelOneSeries =item.Series;
       } else {
         if (this.modelOne == item.name) {
           if (this.modelTwo !== "") {
             this.modelOne = this.modelTwo;
+            this.modelOneSeries = this.modelTwoSeries ;
             this.modelTwo = "";
+            this.modelTwoSeries = "";
               for (var i = 0 ; i<= 19; i++){
                 if (this.itemlist[i].name !== "") {
                   this.itemlist[i].showtime = false;
@@ -450,6 +484,7 @@ export default {
         } else {
           if (this.modelTwo == "") {
             this.modelTwo = item.name;
+            this.modelTwoSeries = item.Series;
             for (var i = 0 ; i<= 19; i++){
               if (this.itemlist[i].name !== "" && this.itemlist[i].name !== this.modelOne && this.itemlist[i].name !== this.modelTwo) {
                 this.itemlist[i].showtime = true;
@@ -458,6 +493,7 @@ export default {
           } else {
             if (this.modelTwo == item.name) {
               this.modelTwo = "";
+              this.modelTwoSeries = "";
               for (var i = 0 ; i<= 19; i++){
                 if (this.itemlist[i].name !== "") {
                   this.itemlist[i].showtime = false;
@@ -473,10 +509,13 @@ export default {
     },
     handleSwitch(){
       if (this.modelTwo != "") {
-          var xx;
+          var xx,yy;
           xx = this.modelOne;
+          yy = this.modelOneSeries;
           this.modelOne = this.modelTwo;
+          this.modelOneSeries = this.modelTwoSeries;
           this.modelTwo = xx;
+          this.modelTwoSeries = yy;
       }
     },
     handleSearch() {
@@ -487,7 +526,9 @@ export default {
           }          
       };
       this.modelOne= "";
+      this.modelOneSeries ="";
       this.modelTwo= "";
+      this.modelTwoSeries ="";
       const file = this.radio.shape + this.radio.coating;
       switch(file) {
         case "ac":
@@ -545,19 +586,11 @@ export default {
             case "ZA11":
             case "ZA12":
             case "ZA13":
-              this.featureDescription = `
-              1. Both series are ambidextrous and are able to switch between right or left-hand modes by holding down button combinations during plug-in. No drivers required.<br>
-              2. FK Series has a lower profile and its hump is closer to fingers, providing less support for palm; ZA Series has a higher profile, providing more support for palm.<br>
-              3. ZA Series has projected notches on both front ends that allow users to lift the mouse easily.
-              `;
+              this.featureDescription = `1. Both series are ambidextrous and are able to switch between right or left-hand modes by holding down button combinations during plug-in. No drivers required. \n\n 2. FK Series has a lower profile and its hump is closer to fingers, providing less support for palm; ZA Series has a higher profile, providing more support for palm. \n\n 3. ZA Series has projected notches on both front ends that allow users to lift the mouse easily.`;
               break;
             case "S1":
             case "S2":
-              this.featureDescription = `
-              1. Both series are ambidextrous. The S Series without right-side buttons is designed for right-handed.<br>
-              2. FK Series has a lower profile providing less support for palm; S Series has a higher profile, providing more support for palm.<br>
-              3. S Series is designed to have a shorter overall length, allowing users to easily wrap around and hold the mouse. The front ends of the mouse have been raised to provide more space to place the 4th finger and easily lift the mouse.
-              `;
+              this.featureDescription = `1. Both series are ambidextrous. The S Series without right-side buttons is designed for right-handed. \n\n 2. FK Series has a lower profile providing less support for palm; S Series has a higher profile, providing more support for palm. \n\n 3. S Series is designed to have a shorter overall length, allowing users to easily wrap around and hold the mouse. The front ends of the mouse have been raised to provide more space to place the 4th finger and easily lift the mouse.`;
               break;
           }
           break;
@@ -570,19 +603,11 @@ export default {
             case "ZA11":
             case "ZA12":
             case "ZA13":
-              this.featureDescription = `
-              1. Both series are ambidextrous and are able to switch between right or left-hand modes by holding down button combinations during plug-in. No drivers required.<br>
-              2. FK Series has a lower profile and its hump is closer to fingers, providing less support for palm; ZA Series has a higher profile, providing more support for palm.<br>
-              3. ZA Series has projected notches on both front ends that allow users to lift the mouse easily.
-              `;
+              this.featureDescription = `1. Both series are ambidextrous and are able to switch between right or left-hand modes by holding down button combinations during plug-in. No drivers required. \n\n 2. FK Series has a lower profile and its hump is closer to fingers, providing less support for palm; ZA Series has a higher profile, providing more support for palm. \n\n 3. ZA Series has projected notches on both front ends that allow users to lift the mouse easily.`;
               break;
             case "S1":
             case "S2":
-              this.featureDescription = `
-              1. Both series are ambidextrous. The S Series without right-side buttons is designed for right-handed.<br>
-              2. FK Series has a lower profile providing less support for palm; S Series has a higher profile, providing more support for palm.<br>
-              3. S Series is designed to have a shorter overall length, allowing users to easily wrap around and hold the mouse. The front ends of the mouse have been raised to provide more space to place the 4th finger and easily lift the mouse.
-              `;
+              this.featureDescription = `1. Both series are ambidextrous. The S Series without right-side buttons is designed for right-handed. \n\n 2. FK Series has a lower profile providing less support for palm; S Series has a higher profile, providing more support for palm. \n\n 3. S Series is designed to have a shorter overall length, allowing users to easily wrap around and hold the mouse. The front ends of the mouse have been raised to provide more space to place the 4th finger and easily lift the mouse.`;
               break;
           }
           break;
@@ -595,19 +620,11 @@ export default {
             case "ZA11":
             case "ZA12":
             case "ZA13":
-              this.featureDescription = `
-              1. Both series are ambidextrous and are able to switch between right or left-hand modes by holding down button combinations during plug-in. No drivers required.<br>
-              2. FK Series has a lower profile and its hump is closer to fingers, providing less support for palm; ZA Series has a higher profile, providing more support for palm.<br>
-              3. ZA Series has projected notches on both front ends that allow users to lift the mouse easily.
-              `;
+              this.featureDescription = `1. Both series are ambidextrous and are able to switch between right or left-hand modes by holding down button combinations during plug-in. No drivers required. \n\n 2. FK Series has a lower profile and its hump is closer to fingers, providing less support for palm; ZA Series has a higher profile, providing more support for palm. \n\n 3. ZA Series has projected notches on both front ends that allow users to lift the mouse easily.`;
               break;
             case "S1":
             case "S2":
-              this.featureDescription = `
-              1. Both series are ambidextrous. The S Series without right-side buttons is designed for right-handed.<br>
-              2. FK Series has a lower profile providing less support for palm; S Series has a higher profile, providing more support for palm.<br>
-              3. S Series is designed to have a shorter overall length, allowing users to easily wrap around and hold the mouse. The front ends of the mouse have been raised to provide more space to place the 4th finger and easily lift the mouse.
-              `;
+              this.featureDescription = `1. Both series are ambidextrous. The S Series without right-side buttons is designed for right-handed. \n\n 2. FK Series has a lower profile providing less support for palm; S Series has a higher profile, providing more support for palm. \n\n 3. S Series is designed to have a shorter overall length, allowing users to easily wrap around and hold the mouse. The front ends of the mouse have been raised to provide more space to place the 4th finger and easily lift the mouse.`;
               break;
           }
           break;
@@ -616,11 +633,7 @@ export default {
             case "FK1+":
             case "FK1":
             case "FK2":
-              this.featureDescription = `
-              1. Both series are ambidextrous and are able to switch between right or left-hand modes by holding down button combinations during plug-in. No drivers required.<br>
-              2. FK Series has a lower profile and its hump is closer to fingers, providing less support for palm; ZA Series has a higher profile, providing more support for palm.<br>
-              3. ZA Series has projected notches on both front ends that allow users to lift the mouse easily.
-              `;
+              this.featureDescription = `1. Both series are ambidextrous and are able to switch between right or left-hand modes by holding down button combinations during plug-in. No drivers required. \n\n 2. FK Series has a lower profile and its hump is closer to fingers, providing less support for palm; ZA Series has a higher profile, providing more support for palm. \n\n 3. ZA Series has projected notches on both front ends that allow users to lift the mouse easily.`;
               break;
             case "ZA11":
             case "ZA13":
@@ -628,11 +641,7 @@ export default {
               break;
             case "S1":
             case "S2":
-              this.featureDescription = `
-              1. Both series are ambidextrous, and the S Series without right-side buttons is designed for right-handed users.<br>
-              2. Both ZA and S Series have a high profile design providing sufficient palm support, however their highest points are in different positions. The ZA’s peak is closer to the back while the S’s peak is more in the center. Because of this the weight distribution will be different giving each mouse a different movement feel.<br>
-              3. Both ZA and S Series's front ends are designed for easy lifting during swiping movements or quick adjustments. ZA has a notch for your 4th finger while the S has more room to place the 4th finger.
-              `;
+              this.featureDescription = `1. Both series are ambidextrous, and the S Series without right-side buttons is designed for right-handed users. \n\n 2. Both ZA and S Series have a high profile design providing sufficient palm support, however their highest points are in different positions. The ZA’s peak is closer to the back while the S’s peak is more in the center. Because of this the weight distribution will be different giving each mouse a different movement feel. \n\n 3. Both ZA and S Series's front ends are designed for easy lifting during swiping movements or quick adjustments. ZA has a notch for your 4th finger while the S has more room to place the 4th finger.`;
               break;
           }
           break;
@@ -641,11 +650,7 @@ export default {
             case "FK1+":
             case "FK1":
             case "FK2":
-              this.featureDescription = `
-              1. Both series are ambidextrous and are able to switch between right or left-hand modes by holding down button combinations during plug-in. No drivers required.<br>
-              2. FK Series has a lower profile and its hump is closer to fingers, providing less support for palm; ZA Series has a higher profile, providing more support for palm.<br>
-              3. ZA Series has projected notches on both front ends that allow users to lift the mouse easily.
-              `;
+              this.featureDescription = `1. Both series are ambidextrous and are able to switch between right or left-hand modes by holding down button combinations during plug-in. No drivers required. \n\n 2. FK Series has a lower profile and its hump is closer to fingers, providing less support for palm; ZA Series has a higher profile, providing more support for palm. \n\n 3. ZA Series has projected notches on both front ends that allow users to lift the mouse easily.`;
               break;
             case "ZA12":
             case "ZA13":
@@ -653,11 +658,7 @@ export default {
               break;
             case "S1":
             case "S2":
-              this.featureDescription = `
-              1. Both series are ambidextrous, and the S Series without right-side buttons is designed for right-handed users.<br>
-              2. Both ZA and S Series have a high profile design providing sufficient palm support, however their highest points are in different positions. The ZA’s peak is closer to the back while the S’s peak is more in the center. Because of this the weight distribution will be different giving each mouse a different movement feel.<br>
-              3. Both ZA and S Series's front ends are designed for easy lifting during swiping movements or quick adjustments. ZA has a notch for your 4th finger while the S has more room to place the 4th finger.
-              `;
+              this.featureDescription = `1. Both series are ambidextrous, and the S Series without right-side buttons is designed for right-handed users. \n\n 2. Both ZA and S Series have a high profile design providing sufficient palm support, however their highest points are in different positions. The ZA’s peak is closer to the back while the S’s peak is more in the center. Because of this the weight distribution will be different giving each mouse a different movement feel. \n\n 3. Both ZA and S Series's front ends are designed for easy lifting during swiping movements or quick adjustments. ZA has a notch for your 4th finger while the S has more room to place the 4th finger.`;
               break;
           }
           break;
@@ -892,5 +893,7 @@ export default {
   color: #fff;
   background-color: #CC0040;
 }
-
+.text-wrapper {
+  white-space: pre-wrap;
+}
 </style>
