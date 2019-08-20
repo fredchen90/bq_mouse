@@ -2,10 +2,10 @@
     "EC1": {
         "checkbox": true,
         "model": "EC1",
-        "pic_right": "ec1-b-dv-blue-right-photo.png",
-        "pic_top": "ec1-b-dv-blue-top-photo.png",
-        "pic_red_right": "ec1-b-right.png",
-        "pic_red_top": "ec1-b-top.png",
+        "pic_right": "ec1-b-dv-blue-right-photo",
+        "pic_top": "ec1-b-dv-blue-top-photo",
+        "pic_red_right": "ec1-b-right",
+        "pic_red_top": "ec1-b-top",
         "description": "80% of CS:GO professional players using EC1 are palm grip. 20% of players are claw grip.",
         "length": "128",
         "height": "43",
@@ -17,10 +17,10 @@
     "EC2": {
         "checkbox": true,
         "model": "EC2",
-        "pic_right": "ec2-b-right-photo.png",
-        "pic_top": "ec2-b-top-photo.png",
-        "pic_red_right": "ec2-b-right.png",
-        "pic_red_top": "ec2-b-top.png",
+        "pic_right": "ec2-b-right-photo",
+        "pic_top": "ec2-b-top-photo",
+        "pic_red_right": "ec2-b-right",
+        "pic_red_top": "ec2-b-top",
         "description": "50% of CS:GO professional players using EC2 are claw grip. 50% of players are palm grip.",
         "length": "128",
         "height": "40",
@@ -32,7 +32,7 @@
     "FK1+": {
         "checkbox": false,
         "model": "FK1+",
-        "pic_right": "fk1+-right-photo.png",
+        "pic_right": "fk1+-right-photo",
         "pic_top": "",
         "pic_red_right": "",
         "pic_red_top": "",
@@ -45,7 +45,7 @@
     "FK1": {
         "checkbox": false,
         "model": "FK1",
-        "pic_right": "fk1-right-photo.png",
+        "pic_right": "fk1-right-photo",
         "pic_top": "",
         "pic_red_right": "",
         "pic_red_top": "",
@@ -58,7 +58,7 @@
     "FK2": {
         "checkbox": false,
         "model": "FK2",
-        "pic_right": "fk2-right-photo.png",
+        "pic_right": "fk2-right-photo",
         "pic_top": "",
         "pic_red_right": "",
         "pic_red_top": "",
@@ -71,7 +71,7 @@
     "ZA11": {
         "checkbox": false,
         "model": "ZA11",
-        "pic_right": "za11-right-photo.png",
+        "pic_right": "za11-right-photo",
         "pic_top": "",
         "pic_red_right": "",
         "pic_red_top": "",
@@ -84,7 +84,7 @@
     "ZA12": {
         "checkbox": false,
         "model": "ZA12",
-        "pic_right": "za12-right-photo.png",
+        "pic_right": "za12-right-photo",
         "pic_top": "",
         "pic_red_right": "",
         "pic_red_top": "",
@@ -97,7 +97,7 @@
     "ZA13": {
         "checkbox": false,
         "model": "ZA13",
-        "pic_right": "za13-right-photo.png",
+        "pic_right": "za13-right-photo",
         "pic_top": "",
         "pic_red_right": "",
         "pic_red_top": "",
@@ -110,7 +110,7 @@
     "S1": {
         "checkbox": false,
         "model": "S1",
-        "pic_right": "s1-right-photo.png",
+        "pic_right": "s1-right-photo",
         "pic_top": "",
         "pic_red_right": "",
         "pic_red_top": "",
@@ -123,7 +123,7 @@
     "S2": {
         "checkbox": false,
         "model": "S2",
-        "pic_right": "s2-right-photo.png",
+        "pic_right": "s2-right-photo",
         "pic_top": "",
         "pic_red_right": "",
         "pic_red_top": "",

@@ -25,16 +25,26 @@
                             C127.522,3.623,128.375,2.771,129.411,2.771"></path>
                         </svg>         
                         </a>
+
+          <div style="float:right; line-height:54px;">
+            <ul style="padding-right:40px">
+              <li class="nav"><a href="https://zowie.benq.com/en-us/product/mouse.html" style="text-decoration:none;">PRODUCT</a></li> 
+              <li class="nav"><a href="https://zowie.benq.com/en-us/product/mouse.html" style="text-decoration:none;">WHERE TO BUY</a></li> 
+              <li class="nav"><a href="https://zowie.benq.com/en-us/news.html" style="text-decoration:none;">NEWS</a></li> 
+              <li class="nav"><a href="https://zowie.benq.com/en-us/support.html" style="text-decoration:none;">SUPPORT</a></li> 
+              <li class="nav"><a href="https://zowie.benq.com/en-us/knowledge.html" style="text-decoration:none;">KNOWLEDGE CENTER</a></li> 
+            </ul>
+          </div>
     </div>
     <img src="@/assets/images/cover-banner-1920-315.jpg" @click="bannerClick(info)" style="width:100%;height:auto; margin-top:50px;">
     <div class="content">
-      <h1 style="color:#B12741;font-size: 30px;line-height: 37px;padding:30px 0;">Set your preference and see the mice you might like.</h1>
-      <p style="color:#fff;font-size: 18px;line-height: 22px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, iure.</p>
+      <h1 style="font-weight:400;color:#B12741;font-size: 30px;line-height: 37px;padding:30px 0;">Set your preference and see the mice you might like.</h1>
+      <!-- <p style="color:#fff;font-size: 18px;line-height: 22px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, iure.</p> -->
     </div>
 
     <!-- Radio button -->
     <div class="content">
-      <ul class="ul-c" style="padding-top: 36px">
+      <ul class="ul-c" style="padding-top: 16px">
         <li style="font-size:16px;line-height:19px;margin:22px 0;">
           <div class="radio-beauty-container">
             <p style="color:#fff;"><b style="font-weight: bold; font-size: 18px;line-height: 22px;"> Shape：</b>
@@ -71,7 +81,6 @@
       <br>
       <div class="links">
         <a
-          href=""
           target="_self"
           class="button--mouse"
           @click.prevent="handleSearch"
@@ -79,7 +88,6 @@
           Search
         </a>
         <a
-          href=""
           target="_blank"
           class="button--mouse"
           @click.prevent="handleClear"
@@ -92,7 +100,7 @@
     <!-- Mouse Table -->
     <section v-if="secondArea">
       <div class="content2" style="background:#000;padding:50px 30px;margin-top:40px;margin-bottom:60px">
-        <h1 style="color:#B12741;font-size: 30px;line-height: 37px;padding:30px 0;">Select 2 models to compare.</h1>
+        <h1 style="font-weight:400;color:#B12741;font-size: 30px;line-height: 37px;padding:30px 0;">Select 2 models to compare.</h1>
         <!-- <p style="color:#fff;font-size: 18px;line-height: 22px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, iure.</p> -->
         
         <div style="line-height:80px;color:#fff;font-size: 30px;padding:325 0;text-align: center;height:80px;width:20%;background:#444;float:left;border:#000 1px solid;"> </div>
@@ -106,7 +114,12 @@
             <div @click="select(item,index)">
               <span style="font-size: 26px;line-height: 30px;text-align: center;">{{item.name}}</span>
               <div style="height:80px;width:100%" v-if="item.name != ''">
-                <div style="width:40px;height:40px;border:3px #888 solid;" v-if="item.covered != true && item.showtime != true "></div>
+                <div style="border-radius: 3px;width:40px;height:40px;border:3px #888 solid;position:related;float:left" v-if="item.covered != true && item.showtime != true ">
+                    <div style="background:#CC0040;height:100%" v-if="modelTwo == item.name"><div class="checked"></div></div>
+                    <div style="background:#000;height:100%" v-if="modelOne == item.name"><div class="checked"></div></div>
+                </div>
+                <img :src='"@/assets/images/"+item.pic1+".png"' style="width:118px;height:80px;" v-if="picMode == 1">
+                <img :src='"@/assets/images/"+item.pic2+".png"' style="width:118px;height:80px;" v-if="picMode == 2">
               </div>
               <span style="font-size: 36px;line-height:" v-if="item.title != null"><br><br>{{item.title}}</span>
               <p style="text-align:left;font-size: 14px;line-height: 16px;">{{item.content}}</p>
@@ -117,12 +130,54 @@
       </div>
     </section>
 
-    <section style="padding-top:60px; background:#fff">
+    <section style="padding-top:60px; background:#fff" v-if="modelOne != ''">
     <div class="content">
-
-      //Fred 請幫我塞這邊
+     <div style="width:100%">
+        <h1 style="font-weight:400;color:#B12741;font-size: 30px;line-height: 37px;padding:30px 0;">Results</h1>
+     </div>
+     <div style="width=100%; line-height:60px">
+        <a v-if="modelTwo != ''"
+          target="_self"
+          class="button--switch"
+          @click.prevent="handleSwitch"
+        >
+          Switch
+        </a>
+        <a v-if="modelTwo == ''"
+          target="_self"
+          class="button--switch"
+          style="background: #ccc;border-color:#ccc"
+        >
+          Switch
+        </a>
+        <p v-if="modelTwo != ''" class="result"> {{modelTwo}}</p>
+        <p v-if="modelOne != ''"  class="result"> {{modelOne}}</p>
+      <div style="clear:both"></div>
+     </div>
+     <div style="width:100%;padding:15px 0">
+        <h2 style="font-weight:400;font-weight: bold;font-size: 18px;line-height: 22px;">Shape Comparison</h2>
+     </div>
+      <div style="width:100%; height: 400px">
+        <img :src='"@/assets/images/"+configFile[modelOne].pic_top+".png"' style="z-index:1;position:absolute;width:550px;height:auto;">
+        <img :src='"@/assets/images/"+configFile[modelOne].pic_right+".png"' style="z-index:1;position:absolute;margin-left:550px;width:550px;height:auto;">
+        <img v-if="modelTwo != ''" :src='"@/assets/images/"+configFile[modelTwo].pic_red_top+".png"' style="z-index:3;position:absolute;width:550px;height:auto;">
+        <img v-if="modelTwo != ''" :src='"@/assets/images/"+configFile[modelTwo].pic_red_right+".png"' style="z-index:3;position:absolute;margin-left:550px;width:550px;height:auto;">
+      </div>
+      <div style="width:100%;">
+        <div style="width:420px">
+          <h3 style="font-weight: bold;font-size: 18px;line-height: 22px;">About {{modelOne}}</h3>
+          <p style="padding:20px 0 50px;font-size:14px"> {{configFile[modelOne].description}}</p>
+          <h3 v-if="modelTwo != ''" style="font-weight: bold;font-size: 18px;line-height: 22px;">About {{modelTwo}}</h3>
+          <p v-if="modelTwo != ''" style="padding:20px 0 50px;font-size:14px"> {{configFile[modelTwo].description}}</p>
+        </div>
+        <div style="width:50%">
+          
+        </div>
+      </div>
+      <div style="width:100%;background:#e8e8e8;padding:40px 40px">
+        <p>{{ this.featureDescription }}</p>
+      </div>
       <div>{{ configFile }}</div>
-
       <div v-if="configFile !== null">
         <p>About FK1: {{ configFile["EC1"].description }} </p>
         <p>About Fk2: {{ configFile["EC2"].description }} </p>
@@ -132,13 +187,22 @@
         <p>Width: {{ configFile["FK1+"].width }} </p>
       </div>
 
-      <div>
-        <p>{{ this.featureDescription }}</p>
-      </div>
 
 
     </div>
     </section>
+
+        <div style="height:60px;width:100%;background:#fff;float:bottom;position:absolute;">
+          <div style="float:right; line-height:54px;">
+            <ul style="padding-right:40px">
+              <li class="nav"><a href="https://zowie.benq.com/en-us/product/mouse.html" style="text-decoration:none;">PRODUCT</a></li> 
+              <li class="nav"><a href="https://zowie.benq.com/en-us/product/mouse.html" style="text-decoration:none;">WHERE TO BUY</a></li> 
+              <li class="nav"><a href="https://zowie.benq.com/en-us/news.html" style="text-decoration:none;">NEWS</a></li> 
+              <li class="nav"><a href="https://zowie.benq.com/en-us/support.html" style="text-decoration:none;">SUPPORT</a></li> 
+              <li class="nav"><a href="https://zowie.benq.com/en-us/knowledge.html" style="text-decoration:none;">KNOWLEDGE CENTER</a></li> 
+            </ul>
+          </div>
+    </div>
 
   </div>
 </template>
@@ -161,6 +225,7 @@ export default {
       },
       modelOne:"",
       modelTwo:"",
+      picMode:"",
       secondArea: false,
       configFile: null,
       featureDescription: "",
@@ -189,6 +254,8 @@ export default {
             content: "90% of CS:GO professional players using FK1+ are claw grip.",
             showtime: false,
             covered: false,
+            pic1:"fk1+-right-photo",
+            pic2:"fk1+-right-photo",
             callback: this.print
           },
           {
@@ -223,6 +290,8 @@ export default {
             Type: 0,
             showtime: false,
             covered: false,
+            pic1: "ec1-b-right-photo",
+            pic2: "ec1-b-dv-blue-right-photo",
             content: "80% of CS:GO professional players using EC1 are palm grip. 20% of players are claw grip.",
             callback: this.print
           },
@@ -231,6 +300,8 @@ export default {
             Type: 3,
             showtime: false,
             covered: false,
+            pic1: "fk1-right-photo",
+            pic2: "fk1-right-photo",
             content: "80% of CS:GO professional players using FK1 are claw grip. 20% of players are palm grip.",
             callback: this.print
           },
@@ -239,6 +310,8 @@ export default {
             Type: 5,
             showtime: false,
             covered: false,
+            pic1: "za11-right-photo",
+            pic2:"za11-white-right-photo",
             content: "90% of CS:GO professional players using ZA11 are palm grip.",
             callback: this.print
           },
@@ -265,6 +338,8 @@ export default {
             Type: 1,
             showtime: false,
             covered: false,
+            pic1: "ec2-b-right-photo",
+            pic2: "ec2-b-dv-blue-right-photo",
             content: "50% of CS:GO professional players using EC2 are claw grip. 50% of players are palm grip.",
             callback: this.print
           },
@@ -274,6 +349,8 @@ export default {
             Type: 4,
             showtime: false,
             covered: false,
+            pic1:"fk2-right-photo",
+            pic2:"fk2-white-right-photo",
             content: "50% of CS:GO professional players using FK2 are claw grip, 50% of players are palm grip.",
             callback: this.print
           },
@@ -283,6 +360,8 @@ export default {
             Type: 6,
             showtime: false,
             covered: false,
+            pic1:"za12-right-photo",
+            pic2:"za12-right-photo",
             content:"65% of CS:GO professional players using ZA12 are claw grip. 35% of players are palm grip.",
             callback: this.print
           },
@@ -291,6 +370,8 @@ export default {
             Type: 8,
             showtime: false,
             covered: false,
+            pic1:"s1-right-photo",
+            pic2:"s1-dv-blue-right-photo",
             content:"65% of CS:GO professional players using S2 are claw grip. 35% of players are palm grip.",
             callback: this.print
           },
@@ -326,6 +407,8 @@ export default {
             Type: 7,
             showtime: false,
             covered: false,
+            pic1:"za13-right-photo",
+            pic2:"za13-right-photo",
             content:"50% of CS:GO professional players using ZA13 are claw grip, 50% of players are palm grip.",
             callback: this.print
           },
@@ -334,6 +417,8 @@ export default {
             Type: 9,
             showtime: false,
             covered: false,
+            pic1:"s2-right-photo",
+            pic2:"s2-dv-blue-right-photo",
             content:"60% of CS:GO professional players using S2 are claw grip. 40% of players are palm grip.",
             callback: this.print
           }
@@ -351,7 +436,7 @@ export default {
 
       if (this.modelOne == "") {
         this.modelOne = item.name;
-      } else {//m1不為空
+      } else {
         if (this.modelOne == item.name) {
           if (this.modelTwo !== "") {
             this.modelOne = this.modelTwo;
@@ -386,34 +471,51 @@ export default {
       this.chioceFeature();
       console.log(item.name,this.modelOne===item.name,this.modelOne,this.modelTwo,this.itemlist)
     },
+    handleSwitch(){
+      if (this.modelTwo != "") {
+          var xx;
+          xx = this.modelOne;
+          this.modelOne = this.modelTwo;
+          this.modelTwo = xx;
+      }
+    },
     handleSearch() {
       for (var i = 0; i<= 19; i++) {
           this.itemlist[i].covered = false;
+          if (this.itemlist[i].name !== "") {
+              this.itemlist[i].showtime = false;
+          }          
       };
+      this.modelOne= "";
+      this.modelTwo= "";
       const file = this.radio.shape + this.radio.coating;
       switch(file) {
         case "ac":
           console.log("use es file");
           this.secondArea = "ac";
           this.configFile = Es;
+          this.picMode = 1;
           this.itemlist[2].covered =this.itemlist[7].covered =this.itemlist[8].covered =this.itemlist[12].covered =this.itemlist[13].covered =this.itemlist[14].covered =this.itemlist[18].covered =this.itemlist[19].covered  = true;
           break;
         case "ad":
           console.log("use eg file");
           this.secondArea = "ad";
           this.configFile = Eg;
+          this.picMode = 2;
           this.itemlist[2].covered =this.itemlist[7].covered =this.itemlist[8].covered =this.itemlist[12].covered =this.itemlist[13].covered =this.itemlist[14].covered =this.itemlist[18].covered =this.itemlist[19].covered  = true;
           break;
         case "bc":
           console.log("use as file");
           this.secondArea = "bc";
           this.configFile = As;
+          this.picMode = 1;
           this.itemlist[6].covered = this.itemlist[11].covered = true;
           break;
         case "bd":
           console.log("use ag file");
           this.secondArea = "bd";
           this.configFile = Ag;
+          this.picMode = 2;
           this.itemlist[2].covered =this.itemlist[7].covered =this.itemlist[6].covered =this.itemlist[11].covered =this.itemlist[13].covered =this.itemlist[18].covered = true;
           break;
         default:
@@ -424,6 +526,9 @@ export default {
     handleClear() {
       this.radio.shape = null;
       this.radio.coating = null;
+      this.secondArea = "";
+      this.modelOne ="";
+      this.modelTwo = "";
     },
     chioceFeature() {
       switch(this.modelOne) {
@@ -732,4 +837,60 @@ export default {
             z-index: 3;
             background-size: 30%;
 }
+.checked {            
+            content: "";
+            width: 15px;
+            height: 30px;
+            margin-left: 10px;
+            border: 4px solid #fff;
+            border-top: none;
+            border-left: none;
+            transform: rotate(45deg)
+}
+.nav {
+  float:left;
+  padding:0 20px;
+}
+.nav a {
+  color:#fff;
+  font-size: 14px;
+  font-weight:600; 
+}
+.nav:hover {
+  color:#ce0040;
+  font-weight:800; 
+  border-bottom:6px #ce0040 solid;
+}
+.nav:hover a {
+  color:#ce0040;
+}
+.result {
+  float: right;
+  padding-right: 60px;
+  font-size: 18px;
+  line-height: 45px;
+  text-decoration:none;
+}
+.button--switch {
+  float: right;
+  display: inline-block;
+  /* border-radius: 4px; */
+  border: 1px solid #CC0040;;
+  color: #fff;;
+  background-color: #CC0040;
+  text-decoration: none;
+  padding: 10px 30px;
+  font-size: 20px;
+  line-height: 23px;
+  text-align: center;
+  margin-right:30px;
+  width:160px;
+  /* height: 40px; */
+}
+
+.button--switch:hover {
+  color: #fff;
+  background-color: #CC0040;
+}
+
 </style>
