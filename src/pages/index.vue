@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div style="height:60px;width:100%;background:#000;top:0px;position:absolute;">
+    <div style="height:60px;width:100%;background:#000;top:0px;position:absolute;overflow:hidden">
       <a href="https://zowie.benq.com/en-us" target="_self" style="padding:5px 30px">
                         <svg id="zowie_logo" width="120" height="60" viewBox="0 0 140.625 39.751">
                             <path fill="#D4003B" d="M39.704,33.709H14.245c-4.521,0-8.174-3.66-8.174-8.165c0-4.506,3.653-8.182,8.174-8.182h14.207
@@ -130,7 +130,7 @@
       </div>
     </section>
 
-    <section style="padding-top:60px; background:#fff" v-if="modelOne != ''">
+    <section style="padding-top:60px;padding-bottom:60px; background:#fff" v-if="modelOne != ''">
     <div class="content">
      <div style="width:100%">
         <h1 style="font-weight:400;color:#B12741;font-size: 30px;line-height: 37px;padding:30px 0;">Results</h1>
@@ -199,16 +199,62 @@
     </div>
     </section>
 
-        <div style="height:60px;width:100%;background:#fff;float:bottom;position:absolute;">
-          <div style="float:right; line-height:54px;">
-            <ul style="padding-right:40px">
-              <li class="nav"><a href="https://zowie.benq.com/en-us/product/mouse.html" style="text-decoration:none;">PRODUCT</a></li> 
-              <li class="nav"><a href="https://zowie.benq.com/en-us/product/mouse.html" style="text-decoration:none;">WHERE TO BUY</a></li> 
-              <li class="nav"><a href="https://zowie.benq.com/en-us/news.html" style="text-decoration:none;">NEWS</a></li> 
-              <li class="nav"><a href="https://zowie.benq.com/en-us/support.html" style="text-decoration:none;">SUPPORT</a></li> 
-              <li class="nav"><a href="https://zowie.benq.com/en-us/knowledge.html" style="text-decoration:none;">KNOWLEDGE CENTER</a></li> 
+        <div style="width:100%;background:#fff;float:bottom;position:absolute;">
+          <div style="width:100%">
+          <div style="width:180px;height:220px;float:left;padding:40px 0">
+            <ul>
+              <li style="padding-bottom:20px"><h4>Products</h4></li>
+              <li><a style="text-decoration:none;color:#888;font-size:12px;line-height:15px;" href="https://zowie.benq.com/en-us/product/monitor.html">Monitor</a></li>
+              <li><a style="text-decoration:none;color:#888;font-size:12px;line-height:15px" href="https://zowie.benq.com/en-us/product/mouse.html">Mouse</a></li>
+              <li><a style="text-decoration:none;color:#888;font-size:12px;line-height:15px" href="https://zowie.benq.com/en-us/product/mouse-pad.html">Mouse Pad</a></li>
+              <li><a style="text-decoration:none;color:#888;font-size:12px;line-height:15px" href="https://zowie.benq.com/en-us/product/keyboard.html">Keyboard</a></li>
+              <li><a style="text-decoration:none;color:#888;font-size:12px;line-height:15px" href="https://zowie.benq.com/en-us/product/audio-system.html">Audio System</a></li>
+              <li><a style="text-decoration:none;color:#888;font-size:12px;line-height:15px" href="https://zowie.benq.com/en-us/product/accessory.html">Accessory</a></li>
+              <li><a style="text-decoration:none;color:#888;font-size:12px;line-height:15px" href="https://zowie.benq.com/en-us/product/divina.html">DIVINA</a></li>
+              <li><a style="text-decoration:none;color:#888;font-size:12px;line-height:15px" href="https://zowie.benq.com/en-us/product/zone.html">ZONE</a></li>
             </ul>
           </div>
+          <div style="width:180px;height:220px;float:left;padding:40px 0">
+            <ul>
+              <li><a style="text-decoration:none;color:#000" href="https://zowie.benq.com/en-us/where-to-buy.html"><h4>Where to buy</h4></a></li>
+            </ul>
+          </div>
+          <div style="width:180px;height:220px;float:left;padding:40px 0">
+            <ul>
+              <li><a style="text-decoration:none;color:#000" href="https://zowie.benq.com/en-us/news.html"><h4>News</h4></a></li>
+            </ul>
+          </div>
+          <div style="width:180px;height:220px;float:left;padding:40px 0">
+            <ul>
+              <li style="padding-bottom:20px"><h4>Support</h4></li>
+              <li><a style="text-decoration:none;color:#888;font-size:12px;line-height:15px;" href="https://zowie.benq.com/en-us/support.html">Support</a></li>
+              <li><a style="text-decoration:none;color:#888;font-size:12px;line-height:15px" href="https://zowie.benq.com/en-us/support.html">Download & FAQ</a></li>
+              <li><a style="text-decoration:none;color:#888;font-size:12px;line-height:15px" href="https://zowie.benq.com/en-us/support/contact.html">Contact</a></li>
+              <li><a style="text-decoration:none;color:#888;font-size:12px;line-height:15px" href="https://zowie.benq.com/en-us/support/warranty/gear.html">Warranty</a></li>
+              <li><a style="text-decoration:none;color:#888;font-size:12px;line-height:15px" href="https://zowie.benq.com/en-us/support/mouse-rate-checker.html">Mouse Rate</a></li>
+            </ul>
+          </div>
+          <div style="width:180px;height:220px;float:left;padding:40px 0">
+            <ul>
+              <li><a style="text-decoration:none;color:#000" href="https://zowie.benq.com/en-us/knowledge.html"><h4>Knowledge Center</h4></a></li>
+            </ul>
+          </div>
+          <div style="width:180px;height:220px;float:left;padding:40px 0">
+            <ul>
+              <li style="padding-bottom:20px"><h4>About</h4></li>
+              <li><a style="text-decoration:none;color:#888;font-size:12px;line-height:15px;" href="https://zowie.benq.com/en-us/about/zowie.html">ZOWIE</a></li>
+            </ul>
+          </div>
+          
+        <div style="clear:both"></div>
+        <div style=" line-height:20px;padding:40px;">
+          <div style="border-top:1px #888 solid; width:100%;padding:10px 0">
+            <a href="https://zowie.benq.com/en-us/welcome.html" style="text-decoration:none;color:#888;font-size:12px;line-height:15px;">United States</a>
+            <p  style="text-decoration:none;color:#888;font-size:12px;line-height:15px; float:right">Copyright @ BenQ Corporation. All Rights Reserved.</p>
+          </div> 
+        </div>
+
+        </div>
     </div>
 
   </div>
