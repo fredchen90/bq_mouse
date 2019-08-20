@@ -37,6 +37,7 @@
           </div>
     </div>
     <img src="@/assets/images/cover-banner-1920-315.jpg" @click="bannerClick(info)" style="width:100%;height:auto; margin-top:50px;">
+  <section style="background:#232323; padding:50px 0">
     <div class="content">
       <h1 style="font-weight:400;color:#B12741;font-size: 30px;line-height: 37px;padding:30px 0;">Set your preference and see the mice you might like.</h1>
       <!-- <p style="color:#fff;font-size: 18px;line-height: 22px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, iure.</p> -->
@@ -99,7 +100,7 @@
 
     <!-- Mouse Table -->
     <section v-if="secondArea">
-      <div class="content2" style="background:#000;padding:50px 30px;margin-top:40px;margin-bottom:60px">
+      <div class="content2" style="background:#000;padding:50px 30px;margin-top:40px;margin-bottom:10px">
         <h1 style="font-weight:400;color:#B12741;font-size: 30px;line-height: 37px;padding:30px 0;">Select 2 models to compare.</h1>
         <!-- <p style="color:#fff;font-size: 18px;line-height: 22px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, iure.</p> -->
         
@@ -126,10 +127,19 @@
             </div>
           </li>
         </ul>
+        
+        <a
+          target="_self"
+          class="button--mouse"
+          style="float:right; margin:20px 0;width:185px"
+          @click.prevent="secondClear"
+        >
+          Remove All
+        </a>
         <div style="clear:both;"></div>
       </div>
     </section>
-
+</section>
     <section style="padding-top:60px;padding-bottom:60px; background:#fff" v-if="modelOne != ''">
     <div class="content">
      <div style="width:100%">
@@ -196,13 +206,43 @@
       <div style="width:100%;background:#e8e8e8;padding:40px 40px" v-if="modelOne != '' && modelTwo !=''">
         <p class="text-wrapper">{{ this.featureDescription }}</p>
       </div>
+      <div style="width:100%;padding:40px 40px" v-if="modelOne != '' && modelTwo !=''">
+        <div style="width:20%;height:20px;float:left"> </div>
+        <div style="width:30%;height:auto;float:left;text-align:center;"> 
+          <h1 style="font-size: 30px;line-height: 37px;text-align: center;color: #CC0044;">{{modelOne}}</h1>
+          <img :src='"@/assets/images/"+configFile[modelOne].pic_right+".png"' style="width:100%;height:auto;">
+          <a 
+            target="_self"
+            class="button--switch"
+            style="float:none;margin:0;padding:10px; 20px;"
+            :href='configFile[modelOne].link'
+          >
+          Learn More
+          </a>
+        </div>
+        <div style="width:30%;height:20px;float:left;text-align:center;"> 
+          <h1 style="font-size: 30px;line-height: 37px;text-align: center;color: #CC0044;">{{modelTwo}}</h1>
+          <img :src='"@/assets/images/"+configFile[modelTwo].pic_right+".png"' style="width:100%;height:auto;">
+          <a 
+            target="_self"
+            class="button--switch"
+            style="float:none;margin:0;padding:10px; 20px;"
+            :href='configFile[modelTwo].link'
+          >
+          Learn More
+          </a>
+        </div>
+        <div style="width:20%;height:20px;float:left"> </div>
+        <div style="clear:both"></div>
+      </div>
     </div>
     </section>
 
         <div style="width:100%;background:#fff;float:bottom;position:absolute;">
+          <div class="content">
           <div style="width:100%">
           <div style="width:180px;height:220px;float:left;padding:40px 0">
-            <ul>
+            <ul style="padding:0">
               <li style="padding-bottom:20px"><h4>Products</h4></li>
               <li><a style="text-decoration:none;color:#888;font-size:12px;line-height:15px;" href="https://zowie.benq.com/en-us/product/monitor.html">Monitor</a></li>
               <li><a style="text-decoration:none;color:#888;font-size:12px;line-height:15px" href="https://zowie.benq.com/en-us/product/mouse.html">Mouse</a></li>
@@ -215,17 +255,17 @@
             </ul>
           </div>
           <div style="width:180px;height:220px;float:left;padding:40px 0">
-            <ul>
+            <ul style="padding:0">
               <li><a style="text-decoration:none;color:#000" href="https://zowie.benq.com/en-us/where-to-buy.html"><h4>Where to buy</h4></a></li>
             </ul>
           </div>
           <div style="width:180px;height:220px;float:left;padding:40px 0">
-            <ul>
+            <ul style="padding:0">
               <li><a style="text-decoration:none;color:#000" href="https://zowie.benq.com/en-us/news.html"><h4>News</h4></a></li>
             </ul>
           </div>
           <div style="width:180px;height:220px;float:left;padding:40px 0">
-            <ul>
+            <ul style="padding:0">
               <li style="padding-bottom:20px"><h4>Support</h4></li>
               <li><a style="text-decoration:none;color:#888;font-size:12px;line-height:15px;" href="https://zowie.benq.com/en-us/support.html">Support</a></li>
               <li><a style="text-decoration:none;color:#888;font-size:12px;line-height:15px" href="https://zowie.benq.com/en-us/support.html">Download & FAQ</a></li>
@@ -235,19 +275,19 @@
             </ul>
           </div>
           <div style="width:180px;height:220px;float:left;padding:40px 0">
-            <ul>
+            <ul style="padding:0">
               <li><a style="text-decoration:none;color:#000" href="https://zowie.benq.com/en-us/knowledge.html"><h4>Knowledge Center</h4></a></li>
             </ul>
           </div>
           <div style="width:180px;height:220px;float:left;padding:40px 0">
-            <ul>
+            <ul style="padding:0">
               <li style="padding-bottom:20px"><h4>About</h4></li>
               <li><a style="text-decoration:none;color:#888;font-size:12px;line-height:15px;" href="https://zowie.benq.com/en-us/about/zowie.html">ZOWIE</a></li>
             </ul>
           </div>
           
         <div style="clear:both"></div>
-        <div style=" line-height:20px;padding:40px;">
+        <div style=" line-height:20px;padding:40px 0;">
           <div style="border-top:1px #888 solid; width:100%;padding:10px 0">
             <a href="https://zowie.benq.com/en-us/welcome.html" style="text-decoration:none;color:#888;font-size:12px;line-height:15px;">United States</a>
             <p  style="text-decoration:none;color:#888;font-size:12px;line-height:15px; float:right">Copyright @ BenQ Corporation. All Rights Reserved.</p>
@@ -256,12 +296,11 @@
 
         </div>
     </div>
-
+    </div>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
 import Es from '~/config/es.json'
 import Eg from '~/config/eg.json'
 import As from '~/config/as.json'
@@ -605,6 +644,17 @@ export default {
       this.modelOne ="";
       this.modelTwo = "";
     },
+    secondClear() {
+      for (var i = 0; i<= 19; i++) {
+        if (this.itemlist[i].name !== "") {
+          this.itemlist[i].showtime = false;
+        }
+      };
+      this.modelOne= "";
+      this.modelOneSeries ="";
+      this.modelTwo= "";
+      this.modelTwoSeries ="";
+    },
     chioceFeature() {
       switch(this.modelOne) {
         case "EC1":
@@ -782,7 +832,7 @@ export default {
   justify-content: center;
   align-items: center;
   /* text-align: center; */
-  background:#232323;
+  background:#fff;
 }
 
 .title {
