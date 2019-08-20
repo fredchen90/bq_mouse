@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div style="height:60px;width:100%;background:#000;top:0px;position:absolute;overflow:hidden">
+    <div class="top-nav">
       <a href="https://zowie.benq.com/en-us" target="_self" style="padding:5px 30px">
                         <svg id="zowie_logo" width="120" height="60" viewBox="0 0 140.625 39.751">
                             <path fill="#D4003B" d="M39.704,33.709H14.245c-4.521,0-8.174-3.66-8.174-8.165c0-4.506,3.653-8.182,8.174-8.182h14.207
@@ -36,7 +36,8 @@
             </ul>
           </div>
     </div>
-    <img src="@/assets/images/cover-banner-1920-315.jpg" @click="bannerClick(info)" style="width:100%;height:auto; margin-top:50px;">
+    <img src="@/assets/images/cover-banner-1920-315.jpg" @click="bannerClick(info)" style="width:100%;height:auto; margin-top:60px;">
+  <div style="background:#232323; padding:50px 0">
     <div class="content">
       <h1 style="font-weight:400;color:#B12741;font-size: 30px;line-height: 37px;padding:30px 0;">Set your preference and see the mice you might like.</h1>
       <!-- <p style="color:#fff;font-size: 18px;line-height: 22px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, iure.</p> -->
@@ -99,15 +100,15 @@
 
     <!-- Mouse Table -->
     <section v-if="secondArea">
-      <div class="content2" style="background:#000;padding:50px 30px;margin-top:40px;margin-bottom:60px">
+      <div class="content2" style="background:#000;padding:10px 30px;margin-top:40px;margin-bottom:10px">
         <h1 style="font-weight:400;color:#B12741;font-size: 30px;line-height: 37px;padding:30px 0;">Select 2 models to compare.</h1>
         <!-- <p style="color:#fff;font-size: 18px;line-height: 22px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, iure.</p> -->
         
-        <div style="line-height:80px;color:#fff;font-size: 30px;padding:325 0;text-align: center;height:80px;width:20%;background:#444;float:left;border:#000 1px solid;"> </div>
-        <div style="line-height:80px;color:#fff;font-size: 30px;padding:325 0;text-align: center;height:80px;width:20%;background:#444;float:left;border:#000 1px solid;"> EC Series</div>
-        <div style="line-height:80px;color:#fff;font-size: 30px;padding:325 0;text-align: center;height:80px;width:20%;background:#444;float:left;border:#000 1px solid;"> FK Series</div>
-        <div style="line-height:80px;color:#fff;font-size: 30px;padding:325 0;text-align: center;height:80px;width:20%;background:#444;float:left;border:#000 1px solid;"> ZA Series</div>
-        <div style="line-height:80px;color:#fff;font-size: 30px;padding:325 0;text-align: center;height:80px;width:20%;background:#444;float:left;border:#000 1px solid;"> S Series</div>
+        <div class="formhead"> </div>
+        <div class="formhead"> EC Series</div>
+        <div class="formhead"> FK Series</div>
+        <div class="formhead"> ZA Series</div>
+        <div class="formhead"> S Series</div>
         <ul style="padding:0px">
           <li v-for="(item,index) in itemlist" :key="index" style="position: relative;min-height:230px;background: #FFFFFF;border: 1px solid #000000;width:20%;float:left;text-align:center;padding:26px 17px">
             <div class="divMask" style="overflow: hidden;" v-if="item.showtime != false || item.covered != false"></div>
@@ -126,10 +127,19 @@
             </div>
           </li>
         </ul>
+        
+        <a
+          target="_self"
+          class="button--mouse"
+          style="float:right; margin:20px 0;width:185px"
+          @click.prevent="secondClear"
+        >
+          Remove All
+        </a>
         <div style="clear:both;"></div>
       </div>
     </section>
-
+</div>
     <section style="padding-top:60px;padding-bottom:60px; background:#fff" v-if="modelOne != ''">
     <div class="content">
      <div style="width:100%">
@@ -196,13 +206,43 @@
       <div style="width:100%;background:#e8e8e8;padding:40px 40px" v-if="modelOne != '' && modelTwo !=''">
         <p class="text-wrapper">{{ this.featureDescription }}</p>
       </div>
+      <div style="width:100%;padding:40px 40px" v-if="modelOne != '' && modelTwo !=''">
+        <div style="width:20%;height:20px;float:left"> </div>
+        <div style="width:30%;height:auto;float:left;text-align:center;"> 
+          <h1 style="font-size: 30px;line-height: 37px;text-align: center;color: #CC0044;">{{modelOne}}</h1>
+          <img :src='"@/assets/images/"+configFile[modelOne].pic_right+".png"' style="width:100%;height:auto;">
+          <a 
+            target="_self"
+            class="button--switch"
+            style="float:none;margin:0;padding:10px; 20px;"
+            :href='configFile[modelOne].link'
+          >
+          Learn More
+          </a>
+        </div>
+        <div style="width:30%;height:20px;float:left;text-align:center;"> 
+          <h1 style="font-size: 30px;line-height: 37px;text-align: center;color: #CC0044;">{{modelTwo}}</h1>
+          <img :src='"@/assets/images/"+configFile[modelTwo].pic_right+".png"' style="width:100%;height:auto;">
+          <a 
+            target="_self"
+            class="button--switch"
+            style="float:none;margin:0;padding:10px; 20px;"
+            :href='configFile[modelTwo].link'
+          >
+          Learn More
+          </a>
+        </div>
+        <div style="width:20%;height:20px;float:left"> </div>
+        <div style="clear:both"></div>
+      </div>
     </div>
     </section>
 
         <div style="width:100%;background:#fff;float:bottom;position:absolute;">
+          <div class="content">
           <div style="width:100%">
           <div style="width:180px;height:220px;float:left;padding:40px 0">
-            <ul>
+            <ul style="padding:0">
               <li style="padding-bottom:20px"><h4>Products</h4></li>
               <li><a style="text-decoration:none;color:#888;font-size:12px;line-height:15px;" href="https://zowie.benq.com/en-us/product/monitor.html">Monitor</a></li>
               <li><a style="text-decoration:none;color:#888;font-size:12px;line-height:15px" href="https://zowie.benq.com/en-us/product/mouse.html">Mouse</a></li>
@@ -215,17 +255,17 @@
             </ul>
           </div>
           <div style="width:180px;height:220px;float:left;padding:40px 0">
-            <ul>
+            <ul style="padding:0">
               <li><a style="text-decoration:none;color:#000" href="https://zowie.benq.com/en-us/where-to-buy.html"><h4>Where to buy</h4></a></li>
             </ul>
           </div>
           <div style="width:180px;height:220px;float:left;padding:40px 0">
-            <ul>
+            <ul style="padding:0">
               <li><a style="text-decoration:none;color:#000" href="https://zowie.benq.com/en-us/news.html"><h4>News</h4></a></li>
             </ul>
           </div>
           <div style="width:180px;height:220px;float:left;padding:40px 0">
-            <ul>
+            <ul style="padding:0">
               <li style="padding-bottom:20px"><h4>Support</h4></li>
               <li><a style="text-decoration:none;color:#888;font-size:12px;line-height:15px;" href="https://zowie.benq.com/en-us/support.html">Support</a></li>
               <li><a style="text-decoration:none;color:#888;font-size:12px;line-height:15px" href="https://zowie.benq.com/en-us/support.html">Download & FAQ</a></li>
@@ -235,19 +275,19 @@
             </ul>
           </div>
           <div style="width:180px;height:220px;float:left;padding:40px 0">
-            <ul>
+            <ul style="padding:0">
               <li><a style="text-decoration:none;color:#000" href="https://zowie.benq.com/en-us/knowledge.html"><h4>Knowledge Center</h4></a></li>
             </ul>
           </div>
           <div style="width:180px;height:220px;float:left;padding:40px 0">
-            <ul>
+            <ul style="padding:0">
               <li style="padding-bottom:20px"><h4>About</h4></li>
               <li><a style="text-decoration:none;color:#888;font-size:12px;line-height:15px;" href="https://zowie.benq.com/en-us/about/zowie.html">ZOWIE</a></li>
             </ul>
           </div>
           
         <div style="clear:both"></div>
-        <div style=" line-height:20px;padding:40px;">
+        <div style=" line-height:20px;padding:40px 0;">
           <div style="border-top:1px #888 solid; width:100%;padding:10px 0">
             <a href="https://zowie.benq.com/en-us/welcome.html" style="text-decoration:none;color:#888;font-size:12px;line-height:15px;">United States</a>
             <p  style="text-decoration:none;color:#888;font-size:12px;line-height:15px; float:right">Copyright @ BenQ Corporation. All Rights Reserved.</p>
@@ -256,12 +296,11 @@
 
         </div>
     </div>
-
+    </div>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
 import Es from '~/config/es.json'
 import Eg from '~/config/eg.json'
 import As from '~/config/as.json'
@@ -605,6 +644,17 @@ export default {
       this.modelOne ="";
       this.modelTwo = "";
     },
+    secondClear() {
+      for (var i = 0; i<= 19; i++) {
+        if (this.itemlist[i].name !== "") {
+          this.itemlist[i].showtime = false;
+        }
+      };
+      this.modelOne= "";
+      this.modelOneSeries ="";
+      this.modelTwo= "";
+      this.modelTwoSeries ="";
+    },
     chioceFeature() {
       switch(this.modelOne) {
         case "EC1":
@@ -754,15 +804,17 @@ export default {
 </script>
 
 <style>
+.top-nav {
+  height:60px;width:100%;background:#000;top:0px;position:absolute;overflow:hidden;
+}
 .container {
   margin: 0 auto;
   min-height: 100vh;
-  max-width: 1920px;
   /* display: flex; */
   justify-content: center;
   align-items: center;
   /* text-align: center; */
-  background:#232323;
+  background:#fff;
 }
 
 .title {
@@ -905,5 +957,8 @@ export default {
 }
 .text-wrapper {
   white-space: pre-wrap;
+}
+.formhead {
+  line-height:80px;color:#fff;font-size: 30px;padding:325 0;text-align: center;height:80px;width:20%;background:#444;float:left;border:#000 1px solid;
 }
 </style>
