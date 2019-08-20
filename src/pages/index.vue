@@ -36,7 +36,7 @@
             </ul>
           </div>
     </div>
-    <img src="@/assets/images/cover-banner-1920-315.jpg" @click="bannerClick(info)" style="width:100%;height:auto; margin-top:50px;">
+    <img src="@/assets/images/cover-banner-1920-315.jpg" @click="bannerClick(info)" style="width:100%;height:auto; margin-top:60px;">
   <div style="background:#232323; padding:50px 0">
     <div class="content">
       <h1 style="font-weight:400;color:#B12741;font-size: 30px;line-height: 37px;padding:30px 0;">Set your preference and see the mice you might like.</h1>
@@ -830,7 +830,6 @@ export default {
 .container {
   margin: 0 auto;
   min-height: 100vh;
-  max-width: 1920px;
   /* display: flex; */
   justify-content: center;
   align-items: center;
