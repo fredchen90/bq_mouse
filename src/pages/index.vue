@@ -196,18 +196,6 @@
       <div style="width:100%;background:#e8e8e8;padding:40px 40px" v-if="modelOne != '' && modelTwo !=''">
         <p class="text-wrapper">{{ this.featureDescription }}</p>
       </div>
-      <div>{{ configFile }}</div>
-      <div v-if="configFile !== null">
-        <p>About FK1: {{ configFile["EC1"].description }} </p>
-        <p>About Fk2: {{ configFile["EC2"].description }} </p>
-
-        <p>Length: {{ configFile["FK1+"].length }} </p>
-        <p>Height: {{ configFile["FK1+"].height }} </p>
-        <p>Width: {{ configFile["FK1+"].width }} </p>
-      </div>
-
-
-
     </div>
     </section>
 
