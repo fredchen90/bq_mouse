@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div style="height:60px;width:100%;background:#000;top:0px;position:absolute;overflow:hidden">
+    <div class="top-nav">
       <a href="https://zowie.benq.com/en-us" target="_self" style="padding:5px 30px">
                         <svg id="zowie_logo" width="120" height="60" viewBox="0 0 140.625 39.751">
                             <path fill="#D4003B" d="M39.704,33.709H14.245c-4.521,0-8.174-3.66-8.174-8.165c0-4.506,3.653-8.182,8.174-8.182h14.207
@@ -37,7 +37,7 @@
           </div>
     </div>
     <img src="@/assets/images/cover-banner-1920-315.jpg" @click="bannerClick(info)" style="width:100%;height:auto; margin-top:50px;">
-  <section style="background:#232323; padding:50px 0">
+  <div style="background:#232323; padding:50px 0">
     <div class="content">
       <h1 style="font-weight:400;color:#B12741;font-size: 30px;line-height: 37px;padding:30px 0;">Set your preference and see the mice you might like.</h1>
       <!-- <p style="color:#fff;font-size: 18px;line-height: 22px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, iure.</p> -->
@@ -100,15 +100,15 @@
 
     <!-- Mouse Table -->
     <section v-if="secondArea">
-      <div class="content2" style="background:#000;padding:50px 30px;margin-top:40px;margin-bottom:10px">
+      <div class="content2" style="background:#000;padding:10px 30px;margin-top:40px;margin-bottom:10px">
         <h1 style="font-weight:400;color:#B12741;font-size: 30px;line-height: 37px;padding:30px 0;">Select 2 models to compare.</h1>
         <!-- <p style="color:#fff;font-size: 18px;line-height: 22px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, iure.</p> -->
         
-        <div style="line-height:80px;color:#fff;font-size: 30px;padding:325 0;text-align: center;height:80px;width:20%;background:#444;float:left;border:#000 1px solid;"> </div>
-        <div style="line-height:80px;color:#fff;font-size: 30px;padding:325 0;text-align: center;height:80px;width:20%;background:#444;float:left;border:#000 1px solid;"> EC Series</div>
-        <div style="line-height:80px;color:#fff;font-size: 30px;padding:325 0;text-align: center;height:80px;width:20%;background:#444;float:left;border:#000 1px solid;"> FK Series</div>
-        <div style="line-height:80px;color:#fff;font-size: 30px;padding:325 0;text-align: center;height:80px;width:20%;background:#444;float:left;border:#000 1px solid;"> ZA Series</div>
-        <div style="line-height:80px;color:#fff;font-size: 30px;padding:325 0;text-align: center;height:80px;width:20%;background:#444;float:left;border:#000 1px solid;"> S Series</div>
+        <div class="formhead"> </div>
+        <div class="formhead"> EC Series</div>
+        <div class="formhead"> FK Series</div>
+        <div class="formhead"> ZA Series</div>
+        <div class="formhead"> S Series</div>
         <ul style="padding:0px">
           <li v-for="(item,index) in itemlist" :key="index" style="position: relative;min-height:230px;background: #FFFFFF;border: 1px solid #000000;width:20%;float:left;text-align:center;padding:26px 17px">
             <div class="divMask" style="overflow: hidden;" v-if="item.showtime != false || item.covered != false"></div>
@@ -139,7 +139,7 @@
         <div style="clear:both;"></div>
       </div>
     </section>
-</section>
+</div>
     <section style="padding-top:60px;padding-bottom:60px; background:#fff" v-if="modelOne != ''">
     <div class="content">
      <div style="width:100%">
@@ -824,6 +824,9 @@ export default {
 </script>
 
 <style>
+.top-nav {
+  height:60px;width:100%;background:#000;top:0px;position:absolute;overflow:hidden;
+}
 .container {
   margin: 0 auto;
   min-height: 100vh;
@@ -975,5 +978,8 @@ export default {
 }
 .text-wrapper {
   white-space: pre-wrap;
+}
+.formhead {
+  line-height:80px;color:#fff;font-size: 30px;padding:325 0;text-align: center;height:80px;width:20%;background:#444;float:left;border:#000 1px solid;
 }
 </style>
